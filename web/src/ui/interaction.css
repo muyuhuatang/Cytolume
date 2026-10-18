@@ -1,0 +1,194 @@
+/*
+ * Cytolume interaction UI — hover card, selection summary, lasso overlay.
+ * (Foundations A3.) Imported from the 3D wiring (main3d.ts), NOT from style.css,
+ * so the untouched 2D path never pulls these in.
+ *
+ * Design tokens (reflection-0 §4): flat chrome only — no gradients, no glow.
+ * The only light is data light. Indigo --accent (#5B8DEF) is reserved
+ * exclusively for selection / interactive state. Falls back to literal token
+ * values when the host page hasn't defined the :root vars (e.g. temp drivers).
+ */
+
+.cyto-hover-card,
+.cyto-sel-summary {
+  --cyto-panel: var(--panel, #12161f);
+  --cyto-border: var(--border, rgba(255, 255, 255, 0.1));
+  --cyto-text: var(--text, #e6e9ef);
+  --cyto-text-dim: var(--text-dim, rgba(230, 233, 239, 0.55));
+  --cyto-accent: var(--accent, #5b8def);
+  --cyto-canvas: var(--canvas, #0b0e14);
+  --cyto-mono: var(--font-mono, "IBM Plex Mono", ui-monospace, monospace);
+  --cyto-sans: var(--font-sans, "Inter", system-ui, -apple-system, sans-serif);
+}
+
+/* ---- hover card (follows the cursor) ---------------------------------- */
+.cyto-hover-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  min-width: 132px;
+  max-width: 240px;
+  padding: 9px 11px;
+  background: var(--cyto-panel);
+  border: 1px solid var(--cyto-border);
+  border-radius: 8px;
+  color: var(--cyto-text);
+  font-family: var(--cyto-sans);
+  font-size: 12px;
+  line-height: 1.45;
+  pointer-events: none;
+  user-select: none;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  /* honest chrome: no glow. A hairline ambient lift only for legibility. */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+.cyto-hover-card.is-visible {
+  display: flex;
+}
+.cyto-hover-card .cyto-hover-id {
+  font-family: var(--cyto-mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--cyto-text);
+  letter-spacing: -0.01em;
+}
+.cyto-hover-card .cyto-hover-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.cyto-hover-card .cyto-hover-key {
+  color: var(--cyto-text-dim);
+  font-size: 11px;
+  white-space: nowrap;
+}
+.cyto-hover-card .cyto-hover-val {
+  color: var(--cyto-text);
+  font-size: 11.5px;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cyto-hover-card .cyto-hover-val.is-num {
+  font-family: var(--cyto-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- selection summary (bottom-left, above the footer) ---------------- */
+.cyto-sel-summary {
+  position: fixed;
+  left: 20px;
+  bottom: 52px;
+  z-index: 40;
+  width: 232px;
+  padding: 13px 14px 12px;
+  background: var(--cyto-panel);
+  border: 1px solid var(--cyto-border);
+  border-radius: 10px;
+  color: var(--cyto-text);
+  font-family: var(--cyto-sans);
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+.cyto-sel-summary.is-visible {
+  display: flex;
+}
+.cyto-sel-summary .cyto-sel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.cyto-sel-summary .cyto-sel-title {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cyto-text-dim);
+}
+.cyto-sel-summary .cyto-sel-count {
+  font-family: var(--cyto-mono);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  /* the count is the headline of a selection → indigo accent is earned here. */
+  color: var(--cyto-accent);
+}
+.cyto-sel-summary .cyto-sel-count .cyto-sel-count-unit {
+  font-family: var(--cyto-sans);
+  font-size: 11px;
+  color: var(--cyto-text-dim);
+  margin-left: 4px;
+}
+.cyto-sel-summary .cyto-sel-top {
+  font-size: 12px;
+  color: var(--cyto-text);
+}
+.cyto-sel-summary .cyto-sel-top .cyto-sel-top-pct {
+  font-family: var(--cyto-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--cyto-text-dim);
+  margin-left: 6px;
+}
+.cyto-sel-summary .cyto-sel-types {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cyto-sel-summary .cyto-sel-type-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 11.5px;
+}
+.cyto-sel-summary .cyto-sel-type-name {
+  color: var(--cyto-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cyto-sel-summary .cyto-sel-type-count,
+.cyto-sel-summary .cyto-sel-type-pct {
+  font-family: var(--cyto-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--cyto-text-dim);
+}
+.cyto-sel-summary .cyto-sel-type-pct {
+  min-width: 38px;
+  text-align: right;
+}
+.cyto-sel-summary .cyto-sel-clear {
+  margin-top: 2px;
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid var(--cyto-border);
+  border-radius: 6px;
+  color: var(--cyto-text-dim);
+  font-family: var(--cyto-sans);
+  font-size: 11px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease;
+}
+.cyto-sel-summary .cyto-sel-clear:hover {
+  border-color: var(--cyto-accent);
+  color: var(--cyto-text);
+}
+.cyto-sel-summary .cyto-sel-clear:focus-visible {
+  outline: none;
+  border-color: var(--cyto-accent);
+}
+
+/* ---- lasso overlay ---------------------------------------------------- */
+.cyto-lasso-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  display: block;
+}

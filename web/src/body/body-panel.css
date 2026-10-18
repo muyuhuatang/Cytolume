@@ -1,0 +1,144 @@
+/*
+ * Cytolume body panel (reflection-8). A FIXED-SIZE card on the LEFT rail, docked
+ * below the cell-type legend, hosting <ccf-body-ui-wc>. Theme tokens mirror the
+ * legend (--panel/--border/--text), so it inverts with light/dark. The card size
+ * is fixed in px and lives outside the #stage canvas, so embedding zoom/orbit
+ * never touches it.
+ */
+.cyto-body {
+  --cyto-panel: var(--panel, #12161f);
+  --cyto-border: var(--border, rgba(255, 255, 255, 0.1));
+  --cyto-text: var(--text, #e6e9ef);
+  --cyto-text-dim: var(--text-dim, rgba(230, 233, 239, 0.55));
+  --cyto-accent: var(--accent, #5b8def);
+  --cyto-canvas: var(--canvas, #0b0e14);
+  --cyto-mono: var(--font-mono, "IBM Plex Mono", ui-monospace, monospace);
+  --cyto-sans: var(--font-sans, "Inter", system-ui, -apple-system, sans-serif);
+
+  position: fixed;
+  left: 20px;
+  bottom: 24px;
+  z-index: 40;
+  width: 244px;
+  display: flex;
+  flex-direction: column;
+  background: var(--cyto-panel);
+  border: 1px solid var(--cyto-border);
+  border-radius: 10px;
+  color: var(--cyto-text);
+  font-family: var(--cyto-sans);
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+/* Cap the legend so the left rail (legend on top, body below) never overlaps.
+ * (Body card ≈ head + sex toggle + 300px stage + caption ≈ 414px tall.) */
+.cyto-legend {
+  max-height: calc(100vh - 528px);
+}
+
+.cyto-body-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 11px 12px 10px;
+  border-bottom: 1px solid var(--cyto-border);
+  flex: none;
+}
+.cyto-body-title {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cyto-text-dim);
+}
+.cyto-body-tag {
+  margin-left: auto;
+  font-family: var(--cyto-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cyto-accent);
+  border: 1px solid var(--cyto-border);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+/* Segmented toggle: Silhouette | Organ. A thin bar under the header. */
+.cyto-body-modes {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px 9px;
+  border-bottom: 1px solid var(--cyto-border);
+  flex: none;
+}
+.cyto-body-mode-btn {
+  flex: 1;
+  font-family: var(--cyto-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 5px 4px;
+  background: transparent;
+  color: var(--cyto-text-dim);
+  border: 1px solid var(--cyto-border);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.cyto-body-mode-btn:hover {
+  color: var(--cyto-text);
+  border-color: var(--cyto-text-dim);
+}
+.cyto-body-mode-btn.is-active {
+  color: var(--cyto-accent);
+  border-color: var(--cyto-accent);
+  background: color-mix(in srgb, var(--cyto-accent) 14%, transparent);
+}
+
+/* The fixed-size 3D stage. The web component fills it; black canvas reads fine
+ * on both themes since the body scene is lit independently. */
+.cyto-body-stage {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  flex: none;
+  background: var(--cyto-canvas);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.cyto-body-wc {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cyto-body-status {
+  font-size: 12px;
+  color: var(--cyto-text-dim);
+  text-align: center;
+  padding: 0 16px;
+}
+.cyto-body-status.is-error {
+  color: var(--cyto-text-dim);
+}
+
+.cyto-body-caption {
+  padding: 9px 12px 10px;
+  border-top: 1px solid var(--cyto-border);
+  font-size: 12px;
+  color: var(--cyto-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: none;
+}
+
+.cyto-body-credit {
+  padding: 0 12px 9px;
+  color: var(--cyto-text-dim);
+  font-size: 10px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

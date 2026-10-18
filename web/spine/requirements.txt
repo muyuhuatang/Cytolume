@@ -1,0 +1,3 @@
+# Keep the seeded data pipeline on the same dependency versions as this release.
+numpy==2.4.6
+pyarrow==23.0.1

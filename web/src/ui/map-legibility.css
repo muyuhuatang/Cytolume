@@ -1,0 +1,282 @@
+/*
+ * Cytolume map-legibility UI — cell-type legend + auto cluster labels.
+ * (Foundations A3, P2 v1.) Imported from the 3D wiring (main3d.ts), NOT from
+ * style.css, so the untouched 2D path never pulls these in.
+ *
+ * Design tokens (reflection-0 §4 / reflection-1 §11): flat chrome only — no
+ * gradients, no glow. The only light is data light. Indigo --accent (#5B8DEF)
+ * is reserved for interactive state (here: the focused/pinned legend row).
+ * Labels are "structure first, labels second": quiet, never glowing. Falls back
+ * to literal token values when the host hasn't defined the :root vars.
+ */
+
+.cyto-legend,
+.cyto-label-overlay {
+  --cyto-panel: var(--panel, #12161f);
+  --cyto-border: var(--border, rgba(255, 255, 255, 0.1));
+  --cyto-text: var(--text, #e6e9ef);
+  --cyto-text-dim: var(--text-dim, rgba(230, 233, 239, 0.55));
+  --cyto-accent: var(--accent, #5b8def);
+  --cyto-canvas: var(--canvas, #0b0e14);
+  --cyto-row-hover: var(--row-hover, rgba(255, 255, 255, 0.06));
+  --cyto-label-halo: var(--label-halo, rgba(0, 0, 0, 0.85));
+  --cyto-mono: var(--font-mono, "IBM Plex Mono", ui-monospace, monospace);
+  --cyto-sans: var(--font-sans, "Inter", system-ui, -apple-system, sans-serif);
+}
+
+/* ---- legend (left edge, collapsible, scrollable) ---------------------- */
+.cyto-legend {
+  position: fixed;
+  left: 20px;
+  top: 64px;
+  z-index: 40;
+  width: 244px;
+  max-height: calc(100vh - 132px);
+  display: none;
+  flex-direction: column;
+  background: var(--cyto-panel);
+  border: 1px solid var(--cyto-border);
+  border-radius: 10px;
+  color: var(--cyto-text);
+  font-family: var(--cyto-sans);
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+.cyto-legend.is-visible {
+  display: flex;
+}
+
+.cyto-legend-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 11px 12px 10px;
+  border-bottom: 1px solid var(--cyto-border);
+  flex: none;
+}
+.cyto-legend-title {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cyto-text-dim);
+}
+.cyto-legend-typecount {
+  font-family: var(--cyto-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  color: var(--cyto-text-dim);
+}
+.cyto-legend-toggle {
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--cyto-border);
+  border-radius: 5px;
+  color: var(--cyto-text-dim);
+  font-family: var(--cyto-mono);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease;
+}
+.cyto-legend-toggle:hover {
+  border-color: var(--cyto-accent);
+  color: var(--cyto-text);
+}
+.cyto-legend-toggle:focus-visible {
+  outline: none;
+  border-color: var(--cyto-accent);
+}
+
+.cyto-legend-list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 6px 6px 8px;
+  /* quiet scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--cyto-border) transparent;
+}
+.cyto-legend-list::-webkit-scrollbar {
+  width: 8px;
+}
+.cyto-legend-list::-webkit-scrollbar-thumb {
+  background: var(--cyto-border);
+  border-radius: 4px;
+}
+.cyto-legend.is-collapsed .cyto-legend-list {
+  display: none;
+}
+
+.cyto-legend-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 110ms ease, opacity 110ms ease;
+}
+.cyto-legend-row:hover {
+  /* token-driven neutral wash so it stays visible on the light paper theme. */
+  background: var(--cyto-row-hover);
+}
+
+/* focus+context: when a row is focused/pinned, the rest recede. */
+.cyto-legend.has-focus .cyto-legend-row {
+  opacity: 0.38;
+}
+.cyto-legend.has-focus .cyto-legend-row.is-focused {
+  opacity: 1;
+  background: rgba(91, 141, 239, 0.12);
+}
+.cyto-legend-row.is-focused .cyto-legend-name {
+  color: var(--cyto-text);
+}
+
+.cyto-legend-swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  flex: none;
+  /* hairline so light swatches stay bounded against the panel */
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+.cyto-legend-name {
+  font-size: 12px;
+  color: var(--cyto-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+.cyto-legend-count,
+.cyto-legend-pct {
+  font-family: var(--cyto-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  color: var(--cyto-text-dim);
+  text-align: right;
+}
+.cyto-legend-pct {
+  min-width: 36px;
+}
+
+/* ---- auto cluster labels (overlay above the canvas) ------------------- */
+.cyto-label-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  pointer-events: none;
+  overflow: hidden;
+}
+.cyto-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* transform set inline: translate(-50%,-50%) translate(x,y) — centered. */
+  font-family: var(--cyto-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+  color: var(--cyto-text);
+  /* A HARD halo, not a soft shadow. The old `0 1px 2px` was a blurred shadow
+   * offset DOWNWARD, so it smeared instead of separating and left the glyph's
+   * upper edge sitting directly on the marks. Eight 1px offsets form a cut-out
+   * ring and the 3px bloom softens its outer edge against dense marks — the same
+   * ring the 300 dpi export paints with strokeText (ui/figure-composite.ts
+   * drawLabels), so screen and plate now match. Still quiet: no colour, no glow. */
+  text-shadow:
+    1px 0 0 var(--cyto-label-halo), -1px 0 0 var(--cyto-label-halo),
+    0 1px 0 var(--cyto-label-halo), 0 -1px 0 var(--cyto-label-halo),
+    1px 1px 0 var(--cyto-label-halo), -1px 1px 0 var(--cyto-label-halo),
+    1px -1px 0 var(--cyto-label-halo), -1px -1px 0 var(--cyto-label-halo),
+    0 0 3px var(--cyto-label-halo);
+  pointer-events: none;
+  user-select: none;
+  will-change: transform, opacity;
+}
+
+/* --- continuous colorbar ---------------------------------------------------
+ * The key for the continuous encoding, mirroring the categorical legend's card
+ * so the two read as one system. Occupies the legend's slot on the left rail —
+ * exactly one of them is ever visible (main3d switches on the encoding). */
+.cyto-colorbar {
+  position: fixed;
+  top: 68px;
+  left: 20px;
+  width: 244px;
+  box-sizing: border-box;
+  padding: 12px 14px 11px;
+  background: var(--cyto-panel);
+  border: 1px solid var(--cyto-border);
+  border-radius: 10px;
+  color: var(--cyto-text);
+  font: 500 11px/1.4 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s ease;
+  z-index: 40;
+}
+.cyto-colorbar.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+.cyto-colorbar-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cyto-text-dim);
+  margin-bottom: 8px;
+}
+.cyto-colorbar-ramp {
+  height: 10px;
+  border-radius: 3px;
+  border: 1px solid var(--cyto-border);
+}
+/* Distribution strip: shares the ramp's x-axis so a bar reads against the colour
+   directly above it. Block display kills the inline-image baseline gap that would
+   otherwise separate it from the ramp. */
+.cyto-colorbar-hist {
+  display: block;
+  width: 100%;
+  height: 22px;
+  margin-top: 2px;
+  opacity: 0.9;
+}
+/* Ticks are absolutely positioned as a % of the ramp width, so they stay aligned
+   with the gradient at any card width. */
+.cyto-colorbar-ticks {
+  position: relative;
+  height: 13px;
+  margin-top: 3px;
+  font-variant-numeric: tabular-nums;
+  color: var(--cyto-text-dim);
+}
+.cyto-colorbar-ticks span {
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+  font-size: 10px;
+  line-height: 13px;
+}
+.cyto-colorbar-note {
+  margin-top: 7px;
+  font-size: 10px;
+  color: var(--cyto-text-dim);
+  opacity: 0.85;
+}
+
+/* Second 1-D key (density). Separated by a rule so the two axes read as two keys,
+   not as one key with a stray extra bar. */
+.cyto-colorbar-density {
+  margin-top: 10px;
+  padding-top: 9px;
+  border-top: 1px solid var(--cyto-border, rgba(128, 128, 128, 0.25));
+}

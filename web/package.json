@@ -1,0 +1,48 @@
+{
+  "name": "cytolume",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "GPU-rendered web library for navigating millions of single-cell embeddings as an honest, luminous tissue-map.",
+  "license": "MIT",
+  "keywords": [
+    "webgl",
+    "regl",
+    "single-cell",
+    "embeddings",
+    "scatterplot",
+    "visualization",
+    "hubmap",
+    "human-reference-atlas"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build && npm run build:types",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "shot": "node scripts/screenshot.mjs",
+    "build:app": "npm run hra:verify && tsc --noEmit && vite build --config vite.app.config.ts",
+    "hra:verify": "node scripts/hra-snapshot.mjs --verify",
+    "hra:refresh": "node scripts/hra-snapshot.mjs --refresh",
+    "test:hra": "node scripts/test-hra-offline.mjs",
+    "test:hra:browser": "node scripts/test-hra-browser.mjs",
+    "preview:app": "vite preview --config vite.app.config.ts --port 4317",
+    "build:types": "tsc --emitDeclarationOnly --declaration --noEmit false --declarationDir dist"
+  },
+  "main": "./dist/cytolume.js",
+  "module": "./dist/cytolume.js",
+  "types": "./dist/core/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/core/index.d.ts",
+      "import": "./dist/cytolume.js"
+    }
+  },
+  "dependencies": {
+    "regl": "^2.1.1"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.61.1",
+    "typescript": "^5.6.3",
+    "vite": "^8.2.2"
+  }
+}
