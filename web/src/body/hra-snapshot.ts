@@ -1,5 +1,6 @@
 /** Boot the committed HRA snapshot. Failure is explicit; there is no CDN fallback. */
 import type { BodySex } from './body-map.ts';
+import { ModelDownloads, type ModelDownloadState } from './model-progress.ts';
 
 const appBase = new URL(import.meta.env.BASE_URL, window.location.href);
 const root = new URL('vendor/hra/', appBase);
@@ -8,7 +9,8 @@ interface Snapshot {
   schemaVersion: number;
   id: string;
   component: { script: string; stylesheet: string };
-  files: Array<{ path: string; sha256: string }>;
+  models: Array<{ iri: string; path: string }>;
+  files: Array<{ path: string; sha256: string; bytes: number }>;
 }
 
 let loaded: Promise<Snapshot> | undefined;
@@ -126,3 +128,19 @@ export async function loadHraBody(sex: BodySex): Promise<void> {
 }
 
 export const hraAttributionUrl = new URL('ATTRIBUTION.txt', root).href;
+
+/** Subscribe before mounting the component so cached responses are observed too. */
+export async function observeHraModels(onChange: (state: ModelDownloadState) => void): Promise<{
+  expect: (iris: string[]) => void;
+  disconnect: () => void;
+}> {
+  const downloads = new ModelDownloads(await loadSnapshot());
+  const listener = (event: MessageEvent): void => {
+    if (event.source === navigator.serviceWorker.controller && downloads.accept(event.data)) onChange(downloads.read());
+  };
+  navigator.serviceWorker.addEventListener('message', listener);
+  return {
+    expect(iris) { downloads.expect(iris); onChange(downloads.read()); },
+    disconnect() { navigator.serviceWorker.removeEventListener('message', listener); },
+  };
+}

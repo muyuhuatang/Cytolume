@@ -7,7 +7,8 @@
  * these address rendering races inside the upstream component.
  */
 import { type BodySex, referenceBodyIri, referenceOrganIri, bodyNodeLabel } from "./body-map.ts";
-import { loadHraBody, setHraBodySex, hraAttributionUrl } from "./hra-snapshot.ts";
+import { loadHraBody, setHraBodySex, hraAttributionUrl, observeHraModels } from "./hra-snapshot.ts";
+import type { ModelDownloadState } from "./model-progress.ts";
 
 export type { BodySex };
 
@@ -98,6 +99,11 @@ export class BodyPanel {
   readonly el: HTMLDivElement;
   private readonly stageEl: HTMLDivElement;
   private readonly captionEl: HTMLDivElement;
+  private readonly statusEl: HTMLDivElement;
+  private readonly statusLabel: HTMLDivElement;
+  private readonly statusDetail: HTMLDivElement;
+  private readonly progressEl: HTMLProgressElement;
+  private readonly retryButton: HTMLButtonElement;
   private readonly sexButtons: Partial<Record<BodySex, HTMLButtonElement>> = {};
 
   private bodyEl: CcfBodyUiElement | null = null;
@@ -106,6 +112,9 @@ export class BodyPanel {
   private currentId: string | null = null;
   private ready = false;
   private failed = false;
+  private modelError = false;
+  private destroyed = false;
+  private downloads?: Awaited<ReturnType<typeof observeHraModels>>;
   private sexPending = false;
   private sexChange = 0;
   private canvasPoll: number | null = null;
@@ -124,11 +133,11 @@ export class BodyPanel {
     head.className = "cyto-body-head";
     const title = document.createElement("span");
     title.className = "cyto-body-title";
-    title.textContent = "Body location";
+    title.textContent = "Anatomy";
     const tag = document.createElement("span");
     tag.className = "cyto-body-tag";
-    tag.textContent = "synthetic";
-    tag.title = "Cell-type to organ mapping is synthetic.";
+    tag.textContent = "Demo mapping";
+    tag.title = "HRA reference anatomy with illustrative cell-to-organ links for this demo.";
     head.append(title, tag);
 
     const sexes = document.createElement("div");
@@ -154,16 +163,35 @@ export class BodyPanel {
 
     const stageEl = document.createElement("div");
     stageEl.className = "cyto-body-stage";
+    stageEl.setAttribute("aria-busy", "true");
     stageEl.style.background = THEME_BG[this.theme];
     stageEl.addEventListener("contextmenu", (e) => e.preventDefault());
     const loading = document.createElement("div");
     loading.className = "cyto-body-status";
-    loading.textContent = "Loading HRA body...";
+    const statusLabel = document.createElement("div");
+    statusLabel.className = "cyto-body-status-label";
+    statusLabel.setAttribute("role", "status");
+    statusLabel.textContent = "Preparing anatomy…";
+    const progress = document.createElement("progress");
+    progress.setAttribute("aria-label", "Anatomy download");
+    const statusDetail = document.createElement("div");
+    statusDetail.className = "cyto-body-status-detail";
+    statusDetail.textContent = "You can explore the cell map while this loads.";
+    const retry = document.createElement("button");
+    retry.type = "button";
+    retry.textContent = "Reload page";
+    retry.hidden = true;
+    retry.addEventListener("click", () => window.location.reload());
+    loading.append(statusLabel, progress, statusDetail, retry);
     stageEl.appendChild(loading);
 
     const captionEl = document.createElement("div");
     captionEl.className = "cyto-body-caption";
-    captionEl.textContent = "Click a cell to locate it";
+    captionEl.textContent = "Select a cell to explore anatomy";
+
+    const note = document.createElement("div");
+    note.className = "cyto-body-note";
+    note.textContent = "Reference anatomy; illustrative cell links.";
 
     const credit = document.createElement("a");
     credit.className = "cyto-body-credit";
@@ -171,12 +199,17 @@ export class BodyPanel {
     credit.target = "_blank";
     credit.rel = "noopener";
     credit.textContent = "Anatomy: HRA · CC BY 4.0";
-    el.append(head, sexes, stageEl, captionEl, credit);
+    el.append(head, sexes, stageEl, captionEl, note, credit);
     parent.appendChild(el);
 
     this.el = el;
     this.stageEl = stageEl;
     this.captionEl = captionEl;
+    this.statusEl = loading;
+    this.statusLabel = statusLabel;
+    this.statusDetail = statusDetail;
+    this.progressEl = progress;
+    this.retryButton = retry;
 
     void this.init();
   }
@@ -184,10 +217,14 @@ export class BodyPanel {
   private async init(): Promise<void> {
     try {
       await loadHraBody(this.viewSex);
+      if (this.destroyed) return;
+      this.downloads = await observeHraModels(state => this.updateDownload(state));
+      if (this.destroyed) { this.downloads.disconnect(); return; }
       // A toggle can change while an asynchronous worker handshake is in flight.
       for (;;) {
         const sex = this.viewSex;
         await setHraBodySex(sex);
+        if (this.destroyed) return;
         if (sex === this.viewSex) break;
       }
       this.mountScene(this.sceneFor());
@@ -198,15 +235,45 @@ export class BodyPanel {
   }
 
   private showFailure(err: unknown): void {
+    if (this.destroyed) return;
     this.failed = true;
     this.ready = false;
     if (this.canvasPoll !== null) clearInterval(this.canvasPoll);
     if (this.kickTimer !== null) clearTimeout(this.kickTimer);
-    const message = document.createElement("div");
-    message.className = "cyto-body-status is-error";
-    message.textContent = "Body view unavailable";
-    message.title = String(err instanceof Error ? err.message : err);
-    this.stageEl.replaceChildren(message);
+    this.downloads?.disconnect();
+    this.showDownloadError("Anatomy unavailable", "Reload the page to try again.");
+    this.statusEl.title = String(err instanceof Error ? err.message : err);
+    this.stageEl.replaceChildren(this.statusEl);
+  }
+
+  private showDownloadError(label: string, detail: string): void {
+    this.statusEl.hidden = false;
+    this.statusEl.classList.add("is-error");
+    this.statusLabel.textContent = label;
+    this.statusDetail.textContent = detail;
+    this.progressEl.hidden = true;
+    this.retryButton.hidden = false;
+    this.stageEl.setAttribute("aria-busy", "false");
+  }
+
+  private updateDownload(state: ModelDownloadState): void {
+    if (this.destroyed) return;
+    this.modelError = state.error;
+    if (state.error) {
+      this.showDownloadError("Anatomy download interrupted", "The cell map is still available. Reload to retry.");
+      return;
+    }
+    this.stageEl.setAttribute("aria-busy", String(!state.complete));
+    this.statusEl.hidden = state.complete;
+    this.statusEl.classList.remove("is-error");
+    this.retryButton.hidden = true;
+    this.progressEl.hidden = false;
+    if (state.complete) return;
+    if (this.statusLabel.textContent !== "Loading anatomy…") this.statusLabel.textContent = "Loading anatomy…";
+    this.progressEl.max = state.total || 1;
+    this.progressEl.value = state.loaded;
+    const mib = (bytes: number): string => (bytes / (1024 * 1024)).toFixed(1);
+    this.statusDetail.textContent = `${mib(state.loaded)} / ${mib(state.total)} MiB · you can keep exploring`;
   }
 
   /** The scene for the current selection + sex: ALWAYS two items, [skin, organ]. */
@@ -226,6 +293,7 @@ export class BodyPanel {
   }
 
   private mountScene(scene: BodyScene): void {
+    this.downloads?.expect(scene.sceneAllow);
     const body = document.createElement("ccf-body-ui-wc") as CcfBodyUiElement;
     body.className = "cyto-body-wc";
     body.data = scene.data;
@@ -234,7 +302,7 @@ export class BodyPanel {
     this.bodyEl = body;
     this.centerBody();
     this.applyGlow(scene.glow);
-    this.stageEl.replaceChildren(body);
+    this.stageEl.replaceChildren(body, this.statusEl);
     this.startCanvasTransparencyPoll();
     this.kickSceneRebuild(scene);
   }
@@ -319,7 +387,9 @@ export class BodyPanel {
 
   /** Update the mounted element in place (never re-mount: that loses the frame). */
   private applyScene(): void {
+    if (this.failed || this.destroyed) return;
     const scene = this.sceneFor();
+    this.downloads?.expect(scene.sceneAllow);
     if (!this.bodyEl) {
       if (this.ready) this.mountScene(scene);
       return;
@@ -342,8 +412,8 @@ export class BodyPanel {
     this.currentId = nodeId;
     const label = nodeId ? bodyNodeLabel(nodeId) : undefined;
     this.captionEl.textContent = nodeId
-      ? `Located in: ${label ?? nodeId}`
-      : "Click a cell to locate it";
+      ? `Demo link: ${label ?? nodeId}`
+      : "Select a cell to explore anatomy";
     if (!this.sexPending) this.applyScene();
   }
 
@@ -361,12 +431,12 @@ export class BodyPanel {
     p.set("sex", next);
     history.replaceState(null, "", `${window.location.pathname}?${p.toString()}`);
     this.currentId = null;
-    this.captionEl.textContent = "Click a cell to locate it";
+    this.captionEl.textContent = "Select a cell to explore anatomy";
     if (!this.ready) return; // init() will use the current choice.
     this.sexPending = true;
     const change = ++this.sexChange;
     void setHraBodySex(next).then(() => {
-      if (change !== this.sexChange) return;
+      if (this.destroyed || change !== this.sexChange) return;
       this.sexPending = false;
       if (!this.failed) this.applyScene();
     }).catch(err => { if (change === this.sexChange) this.showFailure(err); });
@@ -383,7 +453,7 @@ export class BodyPanel {
     return this.ready;
   }
   get isFailed(): boolean {
-    return this.failed;
+    return this.failed || this.modelError;
   }
   get highlightedId(): string | null {
     return this.currentId;
@@ -396,6 +466,8 @@ export class BodyPanel {
   }
 
   destroy(): void {
+    this.destroyed = true;
+    this.downloads?.disconnect();
     if (this.canvasPoll !== null) clearInterval(this.canvasPoll);
     if (this.kickTimer !== null) clearTimeout(this.kickTimer);
     this.el.remove();

@@ -20,6 +20,8 @@ function worker(base, overrides = {}, id = manifest.id) {
     ['male-tab', { url: `${scope}?sex=male` }],
   ]);
   const requested = [];
+  const messages = [], lifetimes = [];
+  for (const [id, client] of clients) client.postMessage = message => messages.push({ clientId: id, ...structuredClone(message) });
   vm.runInNewContext(workerSource, {
     URL, Request, Response, Map, Set, JSON, Error,
     self: {
@@ -30,12 +32,13 @@ function worker(base, overrides = {}, id = manifest.id) {
       addEventListener: (type, listener) => listeners.set(type, listener),
     },
     fetch: async input => {
-      const url = new URL(input);
+      const url = new URL(input instanceof Request ? input.url : input);
       assert.equal(url.origin, origin, 'Worker attempted an external fetch');
       assert.ok(url.pathname.startsWith(root.pathname), 'Worker escaped the snapshot directory');
       const relative = url.pathname.slice(root.pathname.length);
       requested.push(relative);
       if (Object.hasOwn(overrides, relative)) {
+        if (typeof overrides[relative] === 'function') return overrides[relative]();
         return overrides[relative] === null ? new Response('missing', { status: 404 }) : Response.json(overrides[relative]);
       }
       return new Response(await readFile(resolve(snapshotRoot, relative)));
@@ -43,7 +46,8 @@ function worker(base, overrides = {}, id = manifest.id) {
   }, { filename: 'hra-scene-sw.js' });
 
   return {
-    requested,
+    requested, messages,
+    async settled() { await Promise.all(lifetimes); },
     async init(clientId, sex, snapshot = manifest.id) {
       let result, pending;
       listeners.get('message')({
@@ -57,7 +61,11 @@ function worker(base, overrides = {}, id = manifest.id) {
     async request(path, clientId = 'female-tab', method = 'GET') {
       const url = path.startsWith('https:') ? path : new URL(`api/v1/${path}`, root).href;
       let pending;
-      listeners.get('fetch')({ request: new Request(url, { method }), clientId, respondWith: value => { pending = Promise.resolve(value); } });
+      listeners.get('fetch')({
+        request: new Request(url, { method }), clientId,
+        respondWith: value => { pending = Promise.resolve(value); },
+        waitUntil: value => lifetimes.push(value),
+      });
       assert.ok(pending, `Worker did not handle ${url}`);
       return pending;
     },
@@ -112,6 +120,37 @@ for (const base of ['/', '/Cytolume/']) {
   check((await corrupt.request('scene')).status === 503, 'External model path was accepted');
   const mismatch = worker(base, {}, '00000000000000000000');
   check((await mismatch.request('scene')).status === 503, 'Worker accepted the wrong snapshot');
+
+  // Reading progress must not cause a second fetch, change bytes, or notify another tab.
+  const model = manifest.models.find(model => model.path.includes('heart-female'));
+  const bytes = await readFile(resolve(snapshotRoot, model.path));
+  const modelUrl = `https://example.github.io${base}vendor/hra/${model.path}`;
+  const download = worker(base, { [model.path]: () => new Response(new ReadableStream({
+    start(controller) {
+      controller.enqueue(bytes.subarray(0, 16384));
+      controller.enqueue(bytes.subarray(16384));
+      controller.close();
+    },
+  }), { headers: { 'content-type': 'model/gltf-binary', 'etag': 'original-model' } }) });
+  const response = await download.request(modelUrl);
+  check(response.headers.get('etag') === 'original-model', 'Progress monitoring changed response headers');
+  check(bytes.equals(Buffer.from(await response.arrayBuffer())), 'Progress monitoring changed model bytes');
+  await download.settled();
+  check(download.requested.filter(path => path === model.path).length === 1, 'Progress monitoring fetched a model twice');
+  check(download.messages.every(message => message.clientId === 'female-tab' && message.snapshot === manifest.id && message.path === model.path), 'Progress leaked between tabs or versions');
+  check(download.messages.some(message => message.phase === 'progress' && message.loaded === 16384), 'Streamed progress was not reported');
+  check(download.messages.at(-1).phase === 'complete' && download.messages.at(-1).loaded === bytes.length, 'Download finished with the wrong byte count');
+  const lost = worker(base, { [model.path]: null });
+  check((await lost.request(modelUrl)).status === 404, 'Missing model status was hidden');
+  await lost.settled();
+  check(lost.messages.at(-1).phase === 'error', 'Missing model left the page waiting forever');
+  const interrupted = worker(base, { [model.path]: () => new Response(new ReadableStream({
+    pull(controller) { controller.error(new Error('connection interrupted')); },
+  })) });
+  const broken = await interrupted.request(modelUrl, 'male-tab');
+  await assert.rejects(broken.arrayBuffer());
+  await interrupted.settled();
+  check(interrupted.messages.at(-1).phase === 'error' && interrupted.messages.at(-1).clientId === 'male-tab', 'Stream failure was not reported to its tab');
   console.log(`Passed offline worker scenarios at ${base}`);
 }
 console.log(`${checks} behavioral assertions passed; no network or browser was used.`);

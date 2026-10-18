@@ -20,10 +20,11 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "shot": "node scripts/screenshot.mjs",
-    "build:app": "npm run hra:verify && tsc --noEmit && vite build --config vite.app.config.ts",
+    "build:app": "npm run hra:verify && npm run font:verify && tsc --noEmit && vite build --config vite.app.config.ts",
+    "font:verify": "node scripts/verify-font.mjs",
     "hra:verify": "node scripts/hra-snapshot.mjs --verify",
     "hra:refresh": "node scripts/hra-snapshot.mjs --refresh",
-    "test:hra": "node scripts/test-hra-offline.mjs",
+    "test:hra": "node scripts/test-hra-offline.mjs && node scripts/test-model-progress.mjs",
     "test:hra:browser": "node scripts/test-hra-browser.mjs",
     "preview:app": "vite preview --config vite.app.config.ts --port 4317",
     "build:types": "tsc --emitDeclarationOnly --declaration --noEmit false --declarationDir dist"

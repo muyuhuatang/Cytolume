@@ -97,10 +97,63 @@ async function serveApi(event, url) {
   })));
 }
 
+/** Observe a copy of the SAME response stream; keep the component's response intact. */
+function serveModel(event, url) {
+  let deliver;
+  const response = new Promise(resolve => { deliver = resolve; });
+  event.respondWith(response);
+  // Register lifetime extension synchronously, including the entire streamed body.
+  event.waitUntil((async () => {
+    let client, loaded = 0;
+    const notify = (phase, error) => {
+      try {
+        client?.postMessage({
+          type: 'cyto:hra-model', snapshot: snapshotId,
+          path: url.pathname.slice(ROOT.pathname.length), loaded, phase, error,
+        });
+      } catch { /* A closed tab must not break the model response. */ }
+    };
+    try {
+      try { client = await self.clients.get(event.clientId); } catch { /* The client may have closed. */ }
+      notify('progress');
+      const result = await fetch(event.request);
+      if (!result.ok || result.status !== 200 || !result.body) {
+        deliver(result);
+        notify('error', `Model download failed (${result.status})`);
+        return;
+      }
+      const reader = result.clone().body.getReader();
+      deliver(result);
+      let reportedAt = 0;
+      try {
+        for (;;) {
+          const chunk = await reader.read();
+          if (chunk.done) break;
+          loaded += chunk.value.byteLength;
+          if (Date.now() - reportedAt >= 150) {
+            notify('progress');
+            reportedAt = Date.now();
+          }
+        }
+        notify('complete');
+      } finally { reader.releaseLock(); }
+    } catch (error) {
+      // Resolving again is harmless if the original response was already delivered.
+      deliver(jsonResponse({ error: 'Local anatomy download failed' }, 503));
+      notify('error', String(error));
+    }
+  })());
+}
+
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   if (url.origin === ROOT.origin && url.pathname.startsWith(API_PATH)) {
     event.respondWith(serveApi(event, url).catch(error => jsonResponse({ error: String(error) }, 503)));
+    return;
+  }
+  if (url.origin === ROOT.origin && url.pathname.startsWith(`${ROOT.pathname}models/`) &&
+      url.pathname.endsWith('.glb') && event.request.method === 'GET' && !event.request.headers.has('range')) {
+    serveModel(event, url);
     return;
   }
   // Fail locally if an old component or an unvendored decoder tries an upstream URL.

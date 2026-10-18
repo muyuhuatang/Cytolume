@@ -21,6 +21,7 @@
  * lands in 3D); only an explicitly-requested 2D layout falls back to the 2D view.
  */
 import "./style.css";
+import { setupQuickStart } from "./ui/quick-start.ts";
 import { PointRenderer, Camera2D } from "./core/index.ts";
 import type { EncodingMode, ContinuousColormap, PointData } from "./core/index.ts";
 import { loadManifest } from "./data/manifest.ts";
@@ -110,6 +111,7 @@ const view: ViewKind =
 
 // Reflect the resolved view in the control, then wire the toggle. This runs for
 // BOTH substrates (before the branch) so switching works in either mode.
+setupQuickStart(view);
 viewSel.value = view;
 viewSel.addEventListener("change", () => {
   const next = viewSel.value as ViewKind;

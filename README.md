@@ -59,6 +59,8 @@ For Git upload instructions and first-deployment checks, see
 
 ## What it does
 
+- **Start exploring immediately.** A short, reopenable guide introduces map navigation,
+  cell selection, and anatomical context on the first visit.
 - **Explore in 2D and 3D.** Switch between embedding layouts, orbit the 3D view, and
   follow the same cells through animated layout transitions.
 - **Focus on populations.** Inspect individual cells, select groups with a lasso, and
@@ -66,7 +68,8 @@ For Git upload instructions and first-deployment checks, see
 - **Read values and density.** Dedicated categorical and continuous encodings pair with
   separate value and density keys, distribution strips, and labeled scales.
 - **Add anatomical context.** Explore HRA reference anatomy alongside the cell map,
-  with organ highlighting and female/male reference models.
+  with organ highlighting, female/male reference models, and visible model download
+  progress. The panel labels the illustrative cell-to-organ links as **Demo mapping**.
 - **Export consistent figures.** Capture annotated figures with legends, declared units,
   and data provenance. Deterministic figure composition supports repeatable exports
   from the same data and view settings.
@@ -113,6 +116,10 @@ media/        figures used in the docs
   locally with no runtime HRA API/CDN dependency. `snapshot.json` records versions,
   sources and SHA-256 hashes; `ATTRIBUTION.txt` and `licenses/` retain the credits
   and licenses. Run `npm run hra:verify` from `web/` to verify the snapshot offline.
+- **[Inter](https://github.com/rsms/inter/releases/tag/v4.1)** by Rasmus Andersson and
+  the Inter Project Authors is bundled locally in `web/public/vendor/inter/`, with its
+  SIL Open Font License and SHA-256 records. Run `npm run font:verify` from `web/`.
+  The app loads its font from the same site.
 
 ## License
 
@@ -120,4 +127,5 @@ media/        figures used in the docs
 
 The application is MIT licensed. Bundled HRA component code retains its MIT and dependency
 notices; anatomical models/data retain CC BY 4.0 and per-object creator metadata.
+The bundled Inter font retains the SIL Open Font License 1.1.
 See `web/public/vendor/hra/ATTRIBUTION.txt` and the cookbook's reproducibility section.

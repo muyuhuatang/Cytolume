@@ -94,6 +94,10 @@ The showcase entry is `index.html`, which mounts a single `<canvas id="stage">` 
 
 The in-page **View** control (`#view`) switches substrates by writing `?view=` and reloading.
 
+The **Quick start** guide opens on the first visit, with instructions for the active
+2D or 3D view. **Start exploring** collapses it; its heading reopens it at any time.
+Dismissal is remembered in local storage when available and does not change the map.
+
 ### URL parameters
 
 | Param | Values | Effect |
@@ -276,13 +280,14 @@ A collapsible "Cell types" panel (`Legend`, in `web/src/ui/legend.ts`), injected
 - **Hover a row** → focus that type (all others dim in the plot).
 - **Click a row** → pin the focus (click again, or `Esc`, to unpin).
 
-### Body location panel (HRA, 3D)
+### Anatomy panel (HRA, 3D)
 
-Below the legend sits the **"Body location"** card (`BodyPanel`, in `web/src/body/body-panel.ts`), tagged `synthetic`. It embeds a pinned local copy of the HuBMAP HRA `<ccf-body-ui-wc>` component. The component, scene responses, metadata, and all 22 supported female/male models are committed under `web/public/vendor/hra/` and served by the same site.
+Below the legend sits the **Anatomy** card (`BodyPanel`, in `web/src/body/body-panel.ts`), tagged **Demo mapping**. It embeds a pinned local copy of the HuBMAP HRA `<ccf-body-ui-wc>` component. The anatomy is HRA reference geometry; the cell-to-organ links are illustrative associations for this synthetic demo. The component, scene responses, metadata, and all 22 supported female/male models are committed under `web/public/vendor/hra/` and served by the same site.
 
-- **Click a cell** in the embedding → the matching (synthetic) organ lights up at its anatomical position inside a translucent body, and the caption reads `Located in: <organ>` (otherwise `Click a cell to locate it`).
+- **Click a cell** in the embedding → the linked organ lights up at its anatomical position inside a translucent body, and the caption reads `Demo link: <organ>` (otherwise `Select a cell to explore anatomy`).
 - **Female / Male** segmented toggle picks the reference body; organs with no male variant fall back to a whole-body glow. The choice persists to `?sex=male` and restores on reload.
-- It is a separate DOM overlay, so embedding orbit/zoom never move it. A missing snapshot manifest, worker handshake failure, or failed component load produces `Body view unavailable`; scene/model load failures remain local HTTP errors. The embedding continues to work, and there is no fallback to an upstream CDN/API. The `Anatomy: HRA · CC BY 4.0` link opens the bundled attribution.
+- **Download progress** reports bytes for the current scene's models (about 37.4 MiB for the initial female skin and lung). It remains visible after the component initializes, until those downloads finish. Parsing and rendering may finish shortly afterward. Switching scenes reuses already downloaded model counts, and duplicate requests do not inflate the progress bar.
+- It is a separate DOM overlay, so embedding orbit/zoom never move it. Initialization or model-download failures show an explanatory message with a **Reload page** button. The embedding continues to work, and there is no fallback to an upstream CDN/API. The `Anatomy: HRA · CC BY 4.0` link opens the bundled attribution.
 
 ### Reproducing the body panel
 
@@ -305,7 +310,8 @@ From `web/`:
 
 ```bash
 npm run hra:verify       # offline: all hashes, model dependencies and reference coverage
-npm run test:hra         # offline: real worker logic at / and /Cytolume/, including failure cases
+npm run test:hra         # offline: worker at / and /Cytolume/, streaming and scene-change progress
+npm run font:verify      # offline: pinned Inter font and license hashes
 npm run test:hra:browser # system Chrome: render both sexes and skin/organ selections with outside HTTP blocked
 ```
 
@@ -319,7 +325,11 @@ hook. Keep `.gitattributes`' `-text` rule for snapshot files so a Windows checko
 not change the bytes covered by their hashes. When maintaining `0.release/`, copy the
 same snapshot and adapter changes there as part of the release.
 
-GitHub Pages should publish `dist-app/` including `vendor/hra/` and `hra-scene-sw.js`.
+Inter 4.1 is committed under `public/vendor/inter/`, including its license and
+`snapshot.json` with exact source URLs and hashes. Its stylesheet uses a relative
+font URL and `font-display: swap`; builds verify the committed bytes without a font
+CDN request. GitHub Pages should publish `dist-app/` including `vendor/hra/`,
+`vendor/inter/`, and `hra-scene-sw.js`.
 The cell-data spine is still generated separately; its existing synthetic-data disclosure
 and the synthetic cell-type-to-organ mapping are unchanged. A fixed asset snapshot does
 not promise identical raster pixels across different GPU drivers or browser versions.

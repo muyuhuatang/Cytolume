@@ -4,11 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cytolume — luminous tissue-map</title>
-    <link
-      rel="preconnect"
-      href="https://rsms.me/"
-    />
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="stylesheet" href="/vendor/inter/inter.css" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230b0e14'/><circle cx='16' cy='16' r='9' fill='%23fc4e2a' opacity='.28'/><circle cx='16' cy='16' r='5.5' fill='%23fd8d3c' opacity='.55'/><circle cx='16' cy='16' r='2.6' fill='%23ffffcc'/></svg>" />
   </head>
   <body>
@@ -17,10 +13,20 @@
     <!-- calm default interface: floating panel top-left, readouts bottom -->
     <header id="brand">
       <span class="mark">Cytolume</span>
-      <span class="tag">Single-cell embedding · 3D sphere impostors</span>
+      <span class="tag">Explore single-cell maps in 2D and 3D</span>
     </header>
 
     <section id="panel" aria-label="figure controls">
+      <details class="grp cyto-guide" id="quick-start" open>
+        <summary>Quick start</summary>
+        <p class="guide-intro">Explore a reproducible single-cell demo.</p>
+        <ol>
+          <li><strong id="guide-move-title">Rotate the map</strong><span id="guide-move">Drag to rotate; scroll to zoom.</span></li>
+          <li><strong id="guide-select-title">Select a cell</strong><span id="guide-select">Click a point to inspect it. Choose Cell type under Encoding to explore populations.</span></li>
+          <li><strong id="guide-context-title">Explore anatomy</strong><span id="guide-context">The Anatomy panel shows an illustrative organ link for your selection.</span></li>
+        </ol>
+        <button id="guide-dismiss" type="button">Start exploring</button>
+      </details>
       <details class="grp" open>
         <summary>Data</summary>
 <div class="row" id="layout-row" style="display: none">
@@ -31,7 +37,7 @@
         <label for="mode">Encoding</label>
         <select id="mode">
           <option value="continuous">Continuous · density glow</option>
-          <option value="categorical">Categorical · cell type</option>
+          <option value="categorical">Cell type</option>
         </select>
       </div>
 <div class="row" id="cmap-row">
@@ -100,8 +106,8 @@
 <div class="row" id="view-row">
         <label for="view">View</label>
         <select id="view">
-          <option value="2d">2D · regl point cloud</option>
-          <option value="3d">3D · sphere impostors</option>
+          <option value="2d">2D</option>
+          <option value="3d">3D</option>
         </select>
       </div>
 <div class="row" id="tool-row" style="display: none">

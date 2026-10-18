@@ -89,6 +89,7 @@ function paintedPixels(png) {
 }
 
 async function expectPainted(page, name) {
+  await page.waitForFunction(() => document.querySelector('.cyto-body-status')?.hidden, null, { timeout: 60000 });
   const deadline = Date.now() + 60000;
   let stats;
   do {
@@ -137,7 +138,7 @@ try {
         const stats = await expectPainted(page, `${prefix}-${sex}-${organ}`);
         const state = await page.evaluate(() => ({ ready: window.panel.isReady, selected: window.panel.highlightedId, caption: document.querySelector('.cyto-body-caption')?.textContent }));
         assert.equal(state.ready, true); assert.equal(state.selected, organ);
-        assert.ok(state.caption.startsWith('Located in:'));
+        assert.ok(state.caption.startsWith('Demo link:'));
         console.log(`${base} ${sex} ${organ}: ${JSON.stringify(stats)}`);
       }
     }

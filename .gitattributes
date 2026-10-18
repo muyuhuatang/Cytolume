@@ -12,6 +12,8 @@
 *.u8  binary
 *.bin binary
 *.glb binary
+*.woff2 binary
 
 # Snapshot SHA-256 values cover exact upstream bytes, including text files.
 web/public/vendor/hra/** -text
+web/public/vendor/inter/** -text
