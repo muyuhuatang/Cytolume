@@ -1,0 +1,17 @@
+# Netlify config for the Cytolume showcase.
+# Used for git-connected continuous deploys (Netlify builds from the repo). For a
+# one-off CLI deploy you instead build locally and push the folder:
+#   cd web && npm run build:app && netlify deploy --prod --dir=dist-app
+[build]
+  base = "web"
+  command = "npm install && npm run build:app"
+  publish = "dist-app"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# The spine tiles are immutable, content-addressed-ish binaries — cache hard.
+[[headers]]
+  for = "/spine/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

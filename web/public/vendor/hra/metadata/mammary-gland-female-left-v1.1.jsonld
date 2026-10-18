@@ -1,0 +1,286 @@
+{
+    "@graph": [
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#crosswalk.csv",
+            "dcat:mediaType": "text/csv",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-left/v1.1/assets/crosswalk.csv",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#crosswalk.csv",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Raw data distribution 'crosswalk.csv' file",
+            "rdfs:label": "Raw data distribution 'crosswalk.csv' file",
+            "@type": "dcat:Distribution"
+        },
+        {
+            "@id": "https://orcid.org/0000-0002-3321-6137",
+            "dcat:conforms_to": "Person",
+            "schema1:name": "Katy Börner",
+            "schema1:identifier": "0000-0002-3321-6137",
+            "schema1:givenName": "Katy",
+            "schema1:familyName": "Börner",
+            "rdfs:label": "Katy Börner",
+            "@type": "schema1:Person"
+        },
+        {
+            "@id": "_:b0",
+            "schema1:funder": "National Institutes of Health",
+            "schema1:award": "OT2OD026671",
+            "@type": "schema1:Grant"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#json",
+            "dcat:mediaType": "application/json",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-left/v1.1/graph.json",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#json",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Graph data distribution mammary-gland-female-left (v1.1) in JSON format",
+            "rdfs:label": "Graph data distribution mammary-gland-female-left (v1.1) in JSON format",
+            "@type": "dcat:Distribution"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#rdfxml",
+            "dcat:mediaType": "application/rdf+xml",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-left/v1.1/graph.xml",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#rdfxml",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Graph data distribution mammary-gland-female-left (v1.1) in RDF/XML format",
+            "rdfs:label": "Graph data distribution mammary-gland-female-left (v1.1) in RDF/XML format",
+            "@type": "dcat:Distribution"
+        },
+        {
+            "@id": "https://orcid.org/0000-0002-3333-5646",
+            "dcat:conforms_to": "Person",
+            "schema1:name": "Heidi Schlehlein",
+            "schema1:identifier": "0000-0002-3333-5646",
+            "schema1:givenName": "Heidi",
+            "schema1:familyName": "Schlehlein",
+            "rdfs:label": "Heidi Schlehlein",
+            "@type": "schema1:Person"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#jsonld",
+            "dcat:mediaType": "application/ld+json",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-left/v1.1/graph.jsonld",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#jsonld",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Graph data distribution mammary-gland-female-left (v1.1) in JSON-LD format",
+            "rdfs:label": "Graph data distribution mammary-gland-female-left (v1.1) in JSON-LD format",
+            "@type": "dcat:Distribution"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1",
+            "dcat:distribution": [
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#nquads"
+                },
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#rdfxml"
+                },
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#json"
+                },
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#turtle"
+                },
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#ntriples"
+                },
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#jsonld"
+                }
+            ],
+            "schema1:additionalType": "ref-organ",
+            "rdfs:seeAlso": {
+                "@id": "https://purl.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1"
+            },
+            "schema1:version": "v1.1",
+            "rdfs:label": "mammary-gland-female-left (v1.1) graph data",
+            "dct:creator": {
+                "@id": "https://github.com/hubmapconsortium/hra-do-processor"
+            },
+            "prov:wasDerivedFrom": {
+                "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#raw-data"
+            },
+            "dct:license": "https://creativecommons.org/licenses/by/4.0/",
+            "schema1:dateCreated": {
+                "@value": "2026-06-08",
+                "@type": "xsd:date"
+            },
+            "@type": "dcat:Dataset",
+            "dct:publisher": "HuBMAP",
+            "rdfs:comment": "The graph representation of the 3D Reference organ for Breast (mammary gland), Female left dataset.",
+            "schema1:name": "mammary-gland-female-left",
+            "dct:title": "mammary-gland-female-left (v1.1) graph data"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#nquads",
+            "dcat:mediaType": "application/n-quads",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-left/v1.1/graph.nq",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#nquads",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Graph data distribution mammary-gland-female-left (v1.1) in N-Quads format",
+            "rdfs:label": "Graph data distribution mammary-gland-female-left (v1.1) in N-Quads format",
+            "@type": "dcat:Distribution"
+        },
+        {
+            "@id": "https://github.com/hubmapconsortium/hra-do-processor",
+            "dcat:conforms_to": "SoftwareApplication",
+            "schema1:version": "0.10.0",
+            "schema1:targetProduct": {
+                "@id": "_:b2"
+            },
+            "schema1:name": "HRA Digital Object Processor",
+            "rdfs:label": "HRA Digital Object Processor",
+            "@type": "schema1:SoftwareApplication"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#raw-data",
+            "rdfs:label": "3D Reference organ for Breast (mammary gland), Female left",
+            "dct:license": "Creative Commons Attribution 4.0 International ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))",
+            "dct:creator": {
+                "@id": "https://orcid.org/0000-0002-3333-5646"
+            },
+            "dcat:distribution": [
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#3d-vh-f-mammary-gland-l.glb"
+                },
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#crosswalk.csv"
+                }
+            ],
+            "schema1:citation": "Schlehlein, Heidi. 2024. \"3D Reference Organ for Breast (mammary gland), Female left, v1.1.\" https://doi.org/10.48539/HBM533.BNJL.834. Accessed on June 15, 2024.",
+            "ccf:project_lead": {
+                "@id": "https://orcid.org/0000-0002-3321-6137"
+            },
+            "dct:publisher": "HuBMAP",
+            "ccf:citation_overall": "Schlehlein, Heidi, Bruce W. Herr II, Ellen Quardokus, Andreas Bueckle, and Katy Börner. 2024. \"HuBMAP CCF 3D Reference Object Library.\" https://humanatlas.io/3d-reference-library. Accessed on June 15, 2024.",
+            "ccf:doi": {
+                "@id": "https://doi.org/10.48539/HBM533.BNJL.834"
+            },
+            "schema1:reviewedBy": {
+                "@id": "https://orcid.org/0000-0001-8876-0052"
+            },
+            "@type": "dcat:Dataset",
+            "schema1:funding": [
+                {
+                    "@id": "_:b0"
+                },
+                {
+                    "@id": "_:b1"
+                }
+            ],
+            "schema1:dateCreated": {
+                "@value": "2024-06-15",
+                "@type": "xsd:date"
+            },
+            "dct:title": "3D Reference organ for Breast (mammary gland), Female left",
+            "rdfs:comment": "This reference organ, Left-mammary-gland-female (https://humanatlas.io/3d-reference-library) was created using a\ncustom sculpted model to include relevant anatomy for placement of registration blocks. The atlas *Human Microscopic\nAnatomy* (Krstić 1991) and *Atlas of Anatomy* (Gilroy, MacPherson, and Ross 2008) was referenced.\n\n**Bibliography:**\n\n* Gilroy, Anne M., Brian R. MacPherson, and Lawrence M. Ross. 2008. *Atlas of Anatomy*. Thieme.\n* Krstić, Radivoj V. 1991. *Human Microscopic Anatomy*. Berlin, Heidelberg: Springer. https://doi.org/10.1007/978-3-662-02676-2.",
+            "ccf:hubmap_id": "HBM533.BNJL.834",
+            "dct:references": "https://doi.org/10.1007/978-3-662-02676-2"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#turtle",
+            "dcat:mediaType": "text/turtle",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-left/v1.1/graph.ttl",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#turtle",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Graph data distribution mammary-gland-female-left (v1.1) in Turtle format",
+            "rdfs:label": "Graph data distribution mammary-gland-female-left (v1.1) in Turtle format",
+            "@type": "dcat:Distribution"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#ntriples",
+            "dcat:mediaType": "application/n-triples",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-left/v1.1/graph.nt",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#ntriples",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Graph data distribution mammary-gland-female-left (v1.1) in N-Triples format",
+            "rdfs:label": "Graph data distribution mammary-gland-female-left (v1.1) in N-Triples format",
+            "@type": "dcat:Distribution"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#3d-vh-f-mammary-gland-l.glb",
+            "dcat:mediaType": "model/gltf-binary",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-left/v1.1/assets/3d-vh-f-mammary-gland-l.glb",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#3d-vh-f-mammary-gland-l.glb",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Raw data distribution '3d-vh-f-mammary-gland-l.glb' file",
+            "rdfs:label": "Raw data distribution '3d-vh-f-mammary-gland-l.glb' file",
+            "@type": "dcat:Distribution"
+        },
+        {
+            "@id": "https://orcid.org/0000-0001-8876-0052",
+            "dcat:conforms_to": "Person",
+            "schema1:name": "Harikrishna Nakshatri",
+            "schema1:identifier": "0000-0001-8876-0052",
+            "schema1:givenName": "Harikrishna",
+            "schema1:familyName": "Nakshatri",
+            "rdfs:label": "Harikrishna Nakshatri",
+            "@type": "schema1:Person"
+        },
+        {
+            "@id": "_:b1",
+            "schema1:funder": "National Institutes of Health",
+            "schema1:award": "OT2OD033756",
+            "@type": "schema1:Grant"
+        },
+        {
+            "@id": "_:b2",
+            "rdfs:seeAlso": {
+                "@id": "https://github.com/hubmapconsortium/hra-do-processor/commit/cd8d578a4c9da7c0539008bc2742971b4a545121"
+            },
+            "schema1:codeRepository": {
+                "@id": "https://github.com/hubmapconsortium/hra-do-processor"
+            },
+            "@type": "schema1:SoftwareSourceCode"
+        }
+    ],
+    "@context": {
+        "dct": "http://purl.org/dc/terms/",
+        "schema1": "http://schema.org/",
+        "ccf": "http://purl.org/ccf/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "prov": "http://www.w3.org/ns/prov#"
+    }
+}

@@ -1,0 +1,17 @@
+# Normalise line endings so a Windows and a Linux clone produce identical diffs.
+# Without this, git warns on ~60 files and the first commit from another OS shows
+# every line as changed.
+* text=auto eol=lf
+
+# Binary — never touch.
+*.png binary
+*.ico binary
+*.parquet binary
+*.npy binary
+*.f32 binary
+*.u8  binary
+*.bin binary
+*.glb binary
+
+# Snapshot SHA-256 values cover exact upstream bytes, including text files.
+web/public/vendor/hra/** -text

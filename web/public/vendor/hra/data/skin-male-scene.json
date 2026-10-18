@@ -1,0 +1,39 @@
+[
+  {
+    "@id": "https://purl.humanatlas.io/ref-organ/skin-male/v1.4#primary",
+    "@type": "SpatialSceneNode",
+    "reference_organ": "https://purl.humanatlas.io/ref-organ/skin-male/v1.4#primary",
+    "representation_of": "http://purl.obolibrary.org/obo/UBERON_0002097",
+    "tooltip": "skin",
+    "sex": "Male",
+    "scenegraph": "models/skin-male-v1.4.glb",
+    "scenegraphNode": "VH_M_skin",
+    "transformMatrix": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0.5244569,
+      0.913102269,
+      0.16786468,
+      1
+    ],
+    "color": [
+      255,
+      255,
+      255,
+      255
+    ],
+    "opacity": 0.5,
+    "unpickable": true,
+    "_lighting": "pbr"
+  }
+]

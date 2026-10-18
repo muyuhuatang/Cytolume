@@ -1,0 +1,587 @@
+{
+  "schemaVersion": 1,
+  "id": "2b2e5c57a67ba1c4b778",
+  "capturedAt": "2026-10-18T01:10:35.831Z",
+  "description": "Committed, self-contained HRA body-panel snapshot. Builds verify; refresh is manual.",
+  "component": {
+    "script": "wc.js",
+    "stylesheet": "styles.css",
+    "original": "upstream/wc.js"
+  },
+  "data": {
+    "references": "data/reference-organs.json",
+    "scene": "data/scene.json",
+    "singleOrganScenes": {
+      "https://purl.humanatlas.io/ref-organ/skin-female/v1.5#primary": "data/skin-female-scene.json",
+      "https://purl.humanatlas.io/ref-organ/skin-male/v1.4#primary": "data/skin-male-scene.json"
+    }
+  },
+  "models": [
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/blood-vasculature-female/v1.3#primary",
+      "sex": "female",
+      "path": "models/blood-vasculature-female-v1.3.glb",
+      "metadata": "metadata/blood-vasculature-female-v1.3.jsonld",
+      "version": "v1.3",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-female/v1.3/assets/3d-vh-f-blood-vasculature.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/blood-vasculature-male/v1.3#primary",
+      "sex": "male",
+      "path": "models/blood-vasculature-male-v1.3.glb",
+      "metadata": "metadata/blood-vasculature-male-v1.3.jsonld",
+      "version": "v1.3",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-male/v1.3/assets/3d-vh-m-blood-vasculature.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/heart-female/v1.3#primary",
+      "sex": "female",
+      "path": "models/heart-female-v1.3.glb",
+      "metadata": "metadata/heart-female-v1.3.jsonld",
+      "version": "v1.3",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/heart-female/v1.3/assets/3d-vh-f-heart.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/heart-male/v1.3#primary",
+      "sex": "male",
+      "path": "models/heart-male-v1.3.glb",
+      "metadata": "metadata/heart-male-v1.3.jsonld",
+      "version": "v1.3",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/heart-male/v1.3/assets/3d-vh-m-heart.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/kidney-female-left/v1.3#primary",
+      "sex": "female",
+      "path": "models/kidney-female-left-v1.3.glb",
+      "metadata": "metadata/kidney-female-left-v1.3.jsonld",
+      "version": "v1.3",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/kidney-female-left/v1.3/assets/3d-vh-f-kidney-l.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/kidney-male-left/v1.3#primary",
+      "sex": "male",
+      "path": "models/kidney-male-left-v1.3.glb",
+      "metadata": "metadata/kidney-male-left-v1.3.jsonld",
+      "version": "v1.3",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/kidney-male-left/v1.3/assets/3d-vh-m-kidney-l.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/large-intestine-female/v1.3#primary",
+      "sex": "female",
+      "path": "models/large-intestine-female-v1.3.glb",
+      "metadata": "metadata/large-intestine-female-v1.3.jsonld",
+      "version": "v1.3",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/large-intestine-female/v1.3/assets/3d-sbu-f-large-intestine.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/large-intestine-male/v1.3#primary",
+      "sex": "male",
+      "path": "models/large-intestine-male-v1.3.glb",
+      "metadata": "metadata/large-intestine-male-v1.3.jsonld",
+      "version": "v1.3",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/large-intestine-male/v1.3/assets/3d-sbu-m-large-intestine.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/liver-female/v1.2#primary",
+      "sex": "female",
+      "path": "models/liver-female-v1.2.glb",
+      "metadata": "metadata/liver-female-v1.2.jsonld",
+      "version": "v1.2",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/liver-female/v1.2/assets/3d-vh-f-liver.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/liver-male/v1.2#primary",
+      "sex": "male",
+      "path": "models/liver-male-v1.2.glb",
+      "metadata": "metadata/liver-male-v1.2.jsonld",
+      "version": "v1.2",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/liver-male/v1.2/assets/3d-vh-m-liver.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/lung-female/v1.4#primary",
+      "sex": "female",
+      "path": "models/lung-female-v1.4.glb",
+      "metadata": "metadata/lung-female-v1.4.jsonld",
+      "version": "v1.4",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/lung-female/v1.4/assets/3d-vh-f-lung.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/lung-male/v1.4#primary",
+      "sex": "male",
+      "path": "models/lung-male-v1.4.glb",
+      "metadata": "metadata/lung-male-v1.4.jsonld",
+      "version": "v1.4",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.4/assets/3d-vh-m-lung.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#primary",
+      "sex": "female",
+      "path": "models/mammary-gland-female-left-v1.1.glb",
+      "metadata": "metadata/mammary-gland-female-left-v1.1.jsonld",
+      "version": "v1.1",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-left/v1.1/assets/3d-vh-f-mammary-gland-l.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/pancreas-female/v1.3#primary",
+      "sex": "female",
+      "path": "models/pancreas-female-v1.3.glb",
+      "metadata": "metadata/pancreas-female-v1.3.jsonld",
+      "version": "v1.3",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/pancreas-female/v1.3/assets/3d-vh-f-pancreas.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/pancreas-male/v1.3#primary",
+      "sex": "male",
+      "path": "models/pancreas-male-v1.3.glb",
+      "metadata": "metadata/pancreas-male-v1.3.jsonld",
+      "version": "v1.3",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/pancreas-male/v1.3/assets/3d-vh-m-pancreas.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/skin-female/v1.5#primary",
+      "sex": "female",
+      "path": "models/skin-female-v1.5.glb",
+      "metadata": "metadata/skin-female-v1.5.jsonld",
+      "version": "v1.5",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/skin-female/v1.5/assets/3d-vh-f-skin.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/skin-male/v1.4#primary",
+      "sex": "male",
+      "path": "models/skin-male-v1.4.glb",
+      "metadata": "metadata/skin-male-v1.4.jsonld",
+      "version": "v1.4",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/skin-male/v1.4/assets/3d-vh-m-skin.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/small-intestine-female/v1.2#primary",
+      "sex": "female",
+      "path": "models/small-intestine-female-v1.2.glb",
+      "metadata": "metadata/small-intestine-female-v1.2.jsonld",
+      "version": "v1.2",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/small-intestine-female/v1.2/assets/3d-vh-f-small-intestine.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/small-intestine-male/v1.2#primary",
+      "sex": "male",
+      "path": "models/small-intestine-male-v1.2.glb",
+      "metadata": "metadata/small-intestine-male-v1.2.jsonld",
+      "version": "v1.2",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/small-intestine-male/v1.2/assets/3d-vh-m-small-intestine.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/spleen-female/v1.3#primary",
+      "sex": "female",
+      "path": "models/spleen-female-v1.3.glb",
+      "metadata": "metadata/spleen-female-v1.3.jsonld",
+      "version": "v1.3",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/spleen-female/v1.3/assets/3d-vh-f-spleen.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/spleen-male/v1.3#primary",
+      "sex": "male",
+      "path": "models/spleen-male-v1.3.glb",
+      "metadata": "metadata/spleen-male-v1.3.jsonld",
+      "version": "v1.3",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/spleen-male/v1.3/assets/3d-vh-m-spleen.glb"
+    },
+    {
+      "iri": "https://purl.humanatlas.io/ref-organ/uterus-female/v1.2#primary",
+      "sex": "female",
+      "path": "models/uterus-female-v1.2.glb",
+      "metadata": "metadata/uterus-female-v1.2.jsonld",
+      "version": "v1.2",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/uterus-female/v1.2/assets/3d-vh-f-uterus.glb"
+    }
+  ],
+  "files": [
+    {
+      "path": "ATTRIBUTION.txt",
+      "bytes": 4044,
+      "sha256": "01e6c041e31bda0e0bc640c4ceec4eb71c93cc0633999af5428a1122260ba23a"
+    },
+    {
+      "path": "data/reference-organs.json",
+      "bytes": 17887,
+      "sha256": "b35c8d8f24a90e2621877ea003f7b4514dbf862b939710a43592a6c246c40e3b",
+      "source": "https://apps.humanatlas.io/api/v1/reference-organs",
+      "upstreamSha256": "a41e15db3d25768c63740db9db1f32f5cd0a03b1ef9277ac1583191c20ea08bc",
+      "changes": "Keep the reference organs used by body-map.ts; replace model URLs with snapshot-relative paths."
+    },
+    {
+      "path": "data/scene.json",
+      "bytes": 16960,
+      "sha256": "564b158111de88b9efc9bdebeb134a3eff5cc6e5db69cc3a870ca300cd80fa8b",
+      "source": "https://apps.humanatlas.io/api/v1/scene",
+      "upstreamSha256": "36425a1a289aeb9476cc8f271f40ac95b86c7eef679e6d5f619255a1fc0f8f82",
+      "changes": "Keep supported reference-organ scenegraphs only (omit tissue-block cuboids); use snapshot-relative model paths."
+    },
+    {
+      "path": "data/skin-female-scene.json",
+      "bytes": 754,
+      "sha256": "86fb5e9439fbb79fa4f0590d0eead4062f5c96ba517f61052536c08fde73f284",
+      "source": "https://apps.humanatlas.io/api/v1/reference-organ-scene?organ-iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUBERON_0002097&ontology-terms=%5B%22https%3A%2F%2Fpurl.humanatlas.io%2Fref-organ%2Fskin-female%2Fv1.5%23primary%22%5D&sex=female",
+      "upstreamSha256": "eb0e2e41a8c87dc6238d9886fc3f93c9202c6db13281fb882f84a01b9955f5e4",
+      "changes": "Keep supported scenegraphs; use snapshot-relative model paths."
+    },
+    {
+      "path": "data/skin-male-scene.json",
+      "bytes": 737,
+      "sha256": "9c9022368e6eab9a19c9216f2b5d1de84140f8228559d1b9e9ad3fa2571029f6",
+      "source": "https://apps.humanatlas.io/api/v1/reference-organ-scene?organ-iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUBERON_0002097&ontology-terms=%5B%22https%3A%2F%2Fpurl.humanatlas.io%2Fref-organ%2Fskin-male%2Fv1.4%23primary%22%5D&sex=male",
+      "upstreamSha256": "1b0e5cafcf18a2b4e55859f4ee8165da7e0008363e16c2d39cf9fea7a568aada",
+      "changes": "Keep supported scenegraphs; use snapshot-relative model paths."
+    },
+    {
+      "path": "licenses/CC-BY-4.0.txt",
+      "bytes": 18657,
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "source": "https://creativecommons.org/licenses/by/4.0/legalcode.txt",
+      "upstreamSha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+    },
+    {
+      "path": "licenses/hra-ui-MIT.txt",
+      "bytes": 1074,
+      "sha256": "fdff9ec55c76eafbe790081b20602e7be9e48ec3c82ce77a03ac2fe08240d2f4",
+      "source": "https://raw.githubusercontent.com/hubmapconsortium/hra-ui/main/LICENSE",
+      "upstreamSha256": "fdff9ec55c76eafbe790081b20602e7be9e48ec3c82ce77a03ac2fe08240d2f4"
+    },
+    {
+      "path": "licenses/third-party.txt",
+      "bytes": 74632,
+      "sha256": "1999605655163723ab9dcdc756d6a5d98b275e8f7760b3d4da781e682e3d7812",
+      "source": "https://cdn.humanatlas.io/ui/ccf-body-ui-wc/3rdpartylicenses.txt",
+      "upstreamSha256": "1999605655163723ab9dcdc756d6a5d98b275e8f7760b3d4da781e682e3d7812"
+    },
+    {
+      "path": "metadata/blood-vasculature-female-v1.3.jsonld",
+      "bytes": 15173,
+      "sha256": "6151212f76aadfe63373b85e7d3599d8e773de90dd7fc57cdbf41baa447e8efd",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-female/v1.3/metadata.jsonld",
+      "upstreamSha256": "6151212f76aadfe63373b85e7d3599d8e773de90dd7fc57cdbf41baa447e8efd"
+    },
+    {
+      "path": "metadata/blood-vasculature-male-v1.3.jsonld",
+      "bytes": 15114,
+      "sha256": "fde32ff46d986a4bd9a8ade47da557cb3c213ef2c6bb9486e1d591ddf938656f",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-male/v1.3/metadata.jsonld",
+      "upstreamSha256": "fde32ff46d986a4bd9a8ade47da557cb3c213ef2c6bb9486e1d591ddf938656f"
+    },
+    {
+      "path": "metadata/heart-female-v1.3.jsonld",
+      "bytes": 13878,
+      "sha256": "befa52bca50ea6b21891701b2af7f46761eeb1ebebc10a580032ea80c11a9465",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/heart-female/v1.3/metadata.jsonld",
+      "upstreamSha256": "befa52bca50ea6b21891701b2af7f46761eeb1ebebc10a580032ea80c11a9465"
+    },
+    {
+      "path": "metadata/heart-male-v1.3.jsonld",
+      "bytes": 13413,
+      "sha256": "a1829bcd8de3ff69b84e1a51bf9e384a97b7d5b90ee91b7b1d3d58119d6df430",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/heart-male/v1.3/metadata.jsonld",
+      "upstreamSha256": "a1829bcd8de3ff69b84e1a51bf9e384a97b7d5b90ee91b7b1d3d58119d6df430"
+    },
+    {
+      "path": "metadata/kidney-female-left-v1.3.jsonld",
+      "bytes": 14944,
+      "sha256": "5db03d210a22b6dc745d1e8f840a1bf45b6f17af109dd16043c131727dc55dc9",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/kidney-female-left/v1.3/metadata.jsonld",
+      "upstreamSha256": "5db03d210a22b6dc745d1e8f840a1bf45b6f17af109dd16043c131727dc55dc9"
+    },
+    {
+      "path": "metadata/kidney-male-left-v1.3.jsonld",
+      "bytes": 15025,
+      "sha256": "32979caadeb0c80fdca19397b6f4b96cb836d9a0cf4bb8aa0e9b95f69b02a89e",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/kidney-male-left/v1.3/metadata.jsonld",
+      "upstreamSha256": "32979caadeb0c80fdca19397b6f4b96cb836d9a0cf4bb8aa0e9b95f69b02a89e"
+    },
+    {
+      "path": "metadata/large-intestine-female-v1.3.jsonld",
+      "bytes": 14233,
+      "sha256": "cece8c77cf8dbf4bac73e3b1fa50020d825ca5bed7e508e8eb1528d67ea0dbbf",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/large-intestine-female/v1.3/metadata.jsonld",
+      "upstreamSha256": "cece8c77cf8dbf4bac73e3b1fa50020d825ca5bed7e508e8eb1528d67ea0dbbf"
+    },
+    {
+      "path": "metadata/large-intestine-male-v1.3.jsonld",
+      "bytes": 14723,
+      "sha256": "9558a96affdbc6f8b8095782080c7da0d6601a603a621592a2c047334f64074c",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/large-intestine-male/v1.3/metadata.jsonld",
+      "upstreamSha256": "9558a96affdbc6f8b8095782080c7da0d6601a603a621592a2c047334f64074c"
+    },
+    {
+      "path": "metadata/liver-female-v1.2.jsonld",
+      "bytes": 14899,
+      "sha256": "dfca567f6c990f1c1c03502487eb8b45d2790f7f1c92da09dc9ec9094a731ae5",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/liver-female/v1.2/metadata.jsonld",
+      "upstreamSha256": "dfca567f6c990f1c1c03502487eb8b45d2790f7f1c92da09dc9ec9094a731ae5"
+    },
+    {
+      "path": "metadata/liver-male-v1.2.jsonld",
+      "bytes": 15002,
+      "sha256": "2a363af75ee8765146bc7d096308d73ee8851f38a39199dfc50b417d5efabe1d",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/liver-male/v1.2/metadata.jsonld",
+      "upstreamSha256": "2a363af75ee8765146bc7d096308d73ee8851f38a39199dfc50b417d5efabe1d"
+    },
+    {
+      "path": "metadata/lung-female-v1.4.jsonld",
+      "bytes": 13985,
+      "sha256": "14ed2ecfae07fa38a8e4eb038cbd775eef0bfc539a6ea0459a5329dab3875933",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/lung-female/v1.4/metadata.jsonld",
+      "upstreamSha256": "14ed2ecfae07fa38a8e4eb038cbd775eef0bfc539a6ea0459a5329dab3875933"
+    },
+    {
+      "path": "metadata/lung-male-v1.4.jsonld",
+      "bytes": 14066,
+      "sha256": "509ee70bc497d47496866aece462f956c49010f8fe4c60125bb6853012764cec",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.4/metadata.jsonld",
+      "upstreamSha256": "509ee70bc497d47496866aece462f956c49010f8fe4c60125bb6853012764cec"
+    },
+    {
+      "path": "metadata/mammary-gland-female-left-v1.1.jsonld",
+      "bytes": 14218,
+      "sha256": "a0595af45afeb2ca1ff63ddf90fd9746f95d51c4e000a2a180edb34fe9de2ae8",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-left/v1.1/metadata.jsonld",
+      "upstreamSha256": "a0595af45afeb2ca1ff63ddf90fd9746f95d51c4e000a2a180edb34fe9de2ae8"
+    },
+    {
+      "path": "metadata/pancreas-female-v1.3.jsonld",
+      "bytes": 14264,
+      "sha256": "e518ff4cf059fed9cc712d4c8e2797f491afdb81b80be73c65c7ea0afd14c89e",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/pancreas-female/v1.3/metadata.jsonld",
+      "upstreamSha256": "e518ff4cf059fed9cc712d4c8e2797f491afdb81b80be73c65c7ea0afd14c89e"
+    },
+    {
+      "path": "metadata/pancreas-male-v1.3.jsonld",
+      "bytes": 14345,
+      "sha256": "218a3c553b6e85aa7437c62075993e63b19f29d335e8881cb29d65366f5d1910",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/pancreas-male/v1.3/metadata.jsonld",
+      "upstreamSha256": "218a3c553b6e85aa7437c62075993e63b19f29d335e8881cb29d65366f5d1910"
+    },
+    {
+      "path": "metadata/skin-female-v1.5.jsonld",
+      "bytes": 14268,
+      "sha256": "27480238f0aa6118b8cb35b1a8aced5b55d9834c81866e2d3c7ada659d4fb720",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/skin-female/v1.5/metadata.jsonld",
+      "upstreamSha256": "27480238f0aa6118b8cb35b1a8aced5b55d9834c81866e2d3c7ada659d4fb720"
+    },
+    {
+      "path": "metadata/skin-male-v1.4.jsonld",
+      "bytes": 14109,
+      "sha256": "5b418070aba347ffad67e5ea22bef412146a5f80f2ac9eb53d034fe4c00add88",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/skin-male/v1.4/metadata.jsonld",
+      "upstreamSha256": "5b418070aba347ffad67e5ea22bef412146a5f80f2ac9eb53d034fe4c00add88"
+    },
+    {
+      "path": "metadata/small-intestine-female-v1.2.jsonld",
+      "bytes": 14868,
+      "sha256": "902e6bcc74bc2356c9037ae54a5c8c1f3e6d58a1bd306b4c3c1e59172baed0ad",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/small-intestine-female/v1.2/metadata.jsonld",
+      "upstreamSha256": "902e6bcc74bc2356c9037ae54a5c8c1f3e6d58a1bd306b4c3c1e59172baed0ad"
+    },
+    {
+      "path": "metadata/small-intestine-male-v1.2.jsonld",
+      "bytes": 14957,
+      "sha256": "40fdd39dbb7dca8a8aac3e16de501057f433d22339acd67bc875f1af527561be",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/small-intestine-male/v1.2/metadata.jsonld",
+      "upstreamSha256": "40fdd39dbb7dca8a8aac3e16de501057f433d22339acd67bc875f1af527561be"
+    },
+    {
+      "path": "metadata/spleen-female-v1.3.jsonld",
+      "bytes": 13912,
+      "sha256": "afa2ce81d23fa926327674218a7f5a61e425e5c4129b56c52b36850bea3792f6",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/spleen-female/v1.3/metadata.jsonld",
+      "upstreamSha256": "afa2ce81d23fa926327674218a7f5a61e425e5c4129b56c52b36850bea3792f6"
+    },
+    {
+      "path": "metadata/spleen-male-v1.3.jsonld",
+      "bytes": 13735,
+      "sha256": "da9c4bea14a403e4cbb99306a81b651bdc44d10108bffa87a334c1ba85b3dfa7",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/spleen-male/v1.3/metadata.jsonld",
+      "upstreamSha256": "da9c4bea14a403e4cbb99306a81b651bdc44d10108bffa87a334c1ba85b3dfa7"
+    },
+    {
+      "path": "metadata/uterus-female-v1.2.jsonld",
+      "bytes": 14450,
+      "sha256": "27eba9ee4f1edc8212b80dc8fce5dd57ad7dbcc209ac0a2e72d825e338ec295e",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/uterus-female/v1.2/metadata.jsonld",
+      "upstreamSha256": "27eba9ee4f1edc8212b80dc8fce5dd57ad7dbcc209ac0a2e72d825e338ec295e"
+    },
+    {
+      "path": "models/blood-vasculature-female-v1.3.glb",
+      "bytes": 17875996,
+      "sha256": "6bf794b4255c254d03afe254f765c93e7394e4397068268d4eaa3cde50ffdf60",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-female/v1.3/assets/3d-vh-f-blood-vasculature.glb",
+      "upstreamSha256": "6bf794b4255c254d03afe254f765c93e7394e4397068268d4eaa3cde50ffdf60"
+    },
+    {
+      "path": "models/blood-vasculature-male-v1.3.glb",
+      "bytes": 18050040,
+      "sha256": "3a9fe60549769f3a27c15a0901a055e7c4fd3a9f4a37f39a77f5047f0166d4c3",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-male/v1.3/assets/3d-vh-m-blood-vasculature.glb",
+      "upstreamSha256": "3a9fe60549769f3a27c15a0901a055e7c4fd3a9f4a37f39a77f5047f0166d4c3"
+    },
+    {
+      "path": "models/heart-female-v1.3.glb",
+      "bytes": 1745560,
+      "sha256": "98f66e46b149bfc3836592d9404c50290e21d302ec55c98813435e2d9847b1d9",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/heart-female/v1.3/assets/3d-vh-f-heart.glb",
+      "upstreamSha256": "98f66e46b149bfc3836592d9404c50290e21d302ec55c98813435e2d9847b1d9"
+    },
+    {
+      "path": "models/heart-male-v1.3.glb",
+      "bytes": 4071772,
+      "sha256": "689df039c8bc264ea06a44cd926762976f0666c0ff2dc532d046409b185e6b0c",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/heart-male/v1.3/assets/3d-vh-m-heart.glb",
+      "upstreamSha256": "689df039c8bc264ea06a44cd926762976f0666c0ff2dc532d046409b185e6b0c"
+    },
+    {
+      "path": "models/kidney-female-left-v1.3.glb",
+      "bytes": 1356736,
+      "sha256": "58f0227d45b14d7bcfd2ed05a7bcd76000051ea08d52f844feebd70d612f8084",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/kidney-female-left/v1.3/assets/3d-vh-f-kidney-l.glb",
+      "upstreamSha256": "58f0227d45b14d7bcfd2ed05a7bcd76000051ea08d52f844feebd70d612f8084"
+    },
+    {
+      "path": "models/kidney-male-left-v1.3.glb",
+      "bytes": 1536980,
+      "sha256": "1e9f54281652d0b05c9ae54a06380a41a8d9c62c1036829180750995b1730fac",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/kidney-male-left/v1.3/assets/3d-vh-m-kidney-l.glb",
+      "upstreamSha256": "1e9f54281652d0b05c9ae54a06380a41a8d9c62c1036829180750995b1730fac"
+    },
+    {
+      "path": "models/large-intestine-female-v1.3.glb",
+      "bytes": 387376,
+      "sha256": "b3046d2af718e7f031578db4089a9f4bea707aa4a75af98aab78f172c2f53d74",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/large-intestine-female/v1.3/assets/3d-sbu-f-large-intestine.glb",
+      "upstreamSha256": "b3046d2af718e7f031578db4089a9f4bea707aa4a75af98aab78f172c2f53d74"
+    },
+    {
+      "path": "models/large-intestine-male-v1.3.glb",
+      "bytes": 687076,
+      "sha256": "908a5c38bf14574a673f2d2619502281f7f9e47c46c4eba837aae2e80e38c489",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/large-intestine-male/v1.3/assets/3d-sbu-m-large-intestine.glb",
+      "upstreamSha256": "908a5c38bf14574a673f2d2619502281f7f9e47c46c4eba837aae2e80e38c489"
+    },
+    {
+      "path": "models/liver-female-v1.2.glb",
+      "bytes": 1738552,
+      "sha256": "2ab712216dc8af026f87c43b0ad783273fffdf080bb312bcb4c34724f53e5fa6",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/liver-female/v1.2/assets/3d-vh-f-liver.glb",
+      "upstreamSha256": "2ab712216dc8af026f87c43b0ad783273fffdf080bb312bcb4c34724f53e5fa6"
+    },
+    {
+      "path": "models/liver-male-v1.2.glb",
+      "bytes": 1136412,
+      "sha256": "8e4c38293cfdb6b4f47ef2930c7f4af9e37b9144d1cf26d07c8f12c5045eb404",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/liver-male/v1.2/assets/3d-vh-m-liver.glb",
+      "upstreamSha256": "8e4c38293cfdb6b4f47ef2930c7f4af9e37b9144d1cf26d07c8f12c5045eb404"
+    },
+    {
+      "path": "models/lung-female-v1.4.glb",
+      "bytes": 23255188,
+      "sha256": "101f48ec64f2ed762fde03fc1193eaae583a0d35c47b72a9ca007d72eefb5f71",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/lung-female/v1.4/assets/3d-vh-f-lung.glb",
+      "upstreamSha256": "101f48ec64f2ed762fde03fc1193eaae583a0d35c47b72a9ca007d72eefb5f71"
+    },
+    {
+      "path": "models/lung-male-v1.4.glb",
+      "bytes": 10942332,
+      "sha256": "bba95516fa993ac45c3b1c53f32b58d97232ffd78ae56397e5a2589c6ce4903d",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/lung-male/v1.4/assets/3d-vh-m-lung.glb",
+      "upstreamSha256": "bba95516fa993ac45c3b1c53f32b58d97232ffd78ae56397e5a2589c6ce4903d"
+    },
+    {
+      "path": "models/mammary-gland-female-left-v1.1.glb",
+      "bytes": 13727256,
+      "sha256": "e279f2dacb93d44b59dade4f52ed209ddffc1600f228bd544d464dc50663d7d5",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/mammary-gland-female-left/v1.1/assets/3d-vh-f-mammary-gland-l.glb",
+      "upstreamSha256": "e279f2dacb93d44b59dade4f52ed209ddffc1600f228bd544d464dc50663d7d5"
+    },
+    {
+      "path": "models/pancreas-female-v1.3.glb",
+      "bytes": 714832,
+      "sha256": "553411dfc0391d305191a8f204c88e9fd3c05f7a2c7501023914728f294d8b4e",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/pancreas-female/v1.3/assets/3d-vh-f-pancreas.glb",
+      "upstreamSha256": "553411dfc0391d305191a8f204c88e9fd3c05f7a2c7501023914728f294d8b4e"
+    },
+    {
+      "path": "models/pancreas-male-v1.3.glb",
+      "bytes": 2110316,
+      "sha256": "a89d7acbc9448ca1e6c09f7f6d6a18b2bd8a2e94cd4a0b51709915a8b7bea84e",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/pancreas-male/v1.3/assets/3d-vh-m-pancreas.glb",
+      "upstreamSha256": "a89d7acbc9448ca1e6c09f7f6d6a18b2bd8a2e94cd4a0b51709915a8b7bea84e"
+    },
+    {
+      "path": "models/skin-female-v1.5.glb",
+      "bytes": 16003176,
+      "sha256": "b7dc8b3e5bae070f22f2619b10194b012a6f3cf930836d251828d5893e69594c",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/skin-female/v1.5/assets/3d-vh-f-skin.glb",
+      "upstreamSha256": "b7dc8b3e5bae070f22f2619b10194b012a6f3cf930836d251828d5893e69594c"
+    },
+    {
+      "path": "models/skin-male-v1.4.glb",
+      "bytes": 19901928,
+      "sha256": "4764602f0866fbdad19382e7f12ba148ee33141677153b556f7238116bc33c2a",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/skin-male/v1.4/assets/3d-vh-m-skin.glb",
+      "upstreamSha256": "4764602f0866fbdad19382e7f12ba148ee33141677153b556f7238116bc33c2a"
+    },
+    {
+      "path": "models/small-intestine-female-v1.2.glb",
+      "bytes": 856536,
+      "sha256": "850052a437ac12a57e05bdd97d314ade6f8e1cc4801d13cfbcdffe8d83fa3842",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/small-intestine-female/v1.2/assets/3d-vh-f-small-intestine.glb",
+      "upstreamSha256": "850052a437ac12a57e05bdd97d314ade6f8e1cc4801d13cfbcdffe8d83fa3842"
+    },
+    {
+      "path": "models/small-intestine-male-v1.2.glb",
+      "bytes": 618728,
+      "sha256": "5d51b9b102e762f9b64fd1e7d9fbd1f1a23ed9cfdb536a9e756cca3206fbc5bb",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/small-intestine-male/v1.2/assets/3d-vh-m-small-intestine.glb",
+      "upstreamSha256": "5d51b9b102e762f9b64fd1e7d9fbd1f1a23ed9cfdb536a9e756cca3206fbc5bb"
+    },
+    {
+      "path": "models/spleen-female-v1.3.glb",
+      "bytes": 276824,
+      "sha256": "09231afe99908ac8c08be0945c76431ac247faed2e7f10e80ae4374f8c1f0251",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/spleen-female/v1.3/assets/3d-vh-f-spleen.glb",
+      "upstreamSha256": "09231afe99908ac8c08be0945c76431ac247faed2e7f10e80ae4374f8c1f0251"
+    },
+    {
+      "path": "models/spleen-male-v1.3.glb",
+      "bytes": 540348,
+      "sha256": "826012b9dc6b69064b76c3aabbce32a2baa32d1f97fde3e88a015f399c9040b8",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/spleen-male/v1.3/assets/3d-vh-m-spleen.glb",
+      "upstreamSha256": "826012b9dc6b69064b76c3aabbce32a2baa32d1f97fde3e88a015f399c9040b8"
+    },
+    {
+      "path": "models/uterus-female-v1.2.glb",
+      "bytes": 980408,
+      "sha256": "41014d2b222c2dbbe8d1cc38206b0099ce76d79659a9fdea9f28b8c7d669b864",
+      "source": "https://cdn.humanatlas.io/digital-objects/ref-organ/uterus-female/v1.2/assets/3d-vh-f-uterus.glb",
+      "upstreamSha256": "41014d2b222c2dbbe8d1cc38206b0099ce76d79659a9fdea9f28b8c7d669b864"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "https://cdn.humanatlas.io/ui/ccf-body-ui-wc/styles.css",
+      "upstreamSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "upstream/wc.js",
+      "bytes": 1042268,
+      "sha256": "b3012c6c7c3315b46e19f836a821f0ccad9e6489b78f43d3aa37a52d8757b9c8",
+      "source": "https://cdn.humanatlas.io/ui/ccf-body-ui-wc/wc.js",
+      "upstreamSha256": "b3012c6c7c3315b46e19f836a821f0ccad9e6489b78f43d3aa37a52d8757b9c8"
+    },
+    {
+      "path": "wc.js",
+      "bytes": 1042267,
+      "sha256": "0fe610016becc7054debf54f4ca9082ed84b523d7f6c443242b5d4850b39d59c",
+      "source": "https://cdn.humanatlas.io/ui/ccf-body-ui-wc/wc.js",
+      "upstreamSha256": "b3012c6c7c3315b46e19f836a821f0ccad9e6489b78f43d3aa37a52d8757b9c8",
+      "changes": "Replace exactly one API basePath initializer with globalThis.__cytolumeHraApiBase. No other component edits."
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+Cytolume — local Human Reference Atlas snapshot
+
+Captured: 2026-10-18T01:10:35.831Z
+
+Component: HuBMAP HRA UI, Copyright (c) 2023 HuBMAP Consortium, MIT.
+Source: https://github.com/hubmapconsortium/hra-ui
+Upstream and patched component bytes are both included. The only patch changes the
+API base URL to the local static adapter. Full component and dependency licenses
+are in licenses/hra-ui-MIT.txt and licenses/third-party.txt.
+
+Anatomical models and scene data: Human Reference Atlas / HuBMAP, CC BY 4.0.
+https://humanatlas.io/3d-reference-library
+https://creativecommons.org/licenses/by/4.0/
+Full license: licenses/CC-BY-4.0.txt
+
+Model geometry is unchanged. Scene data is restricted to the reference organs used
+by this demo, tissue-block cuboids are omitted, and model URLs are made local.
+Each original metadata file in metadata/ preserves that object's creators, DOI,
+license and provenance. snapshot.json records source URLs, versions and SHA-256.
+
+The demo's cell-type-to-organ assignments are SYNTHETIC, not biological evidence.
+
+Pinned objects (source identifiers are citations, not runtime network requests):
+https://purl.humanatlas.io/ref-organ/blood-vasculature-female/v1.3#primary
+  Metadata / creators / DOI: metadata/blood-vasculature-female-v1.3.jsonld
+https://purl.humanatlas.io/ref-organ/blood-vasculature-male/v1.3#primary
+  Metadata / creators / DOI: metadata/blood-vasculature-male-v1.3.jsonld
+https://purl.humanatlas.io/ref-organ/heart-female/v1.3#primary
+  Metadata / creators / DOI: metadata/heart-female-v1.3.jsonld
+https://purl.humanatlas.io/ref-organ/heart-male/v1.3#primary
+  Metadata / creators / DOI: metadata/heart-male-v1.3.jsonld
+https://purl.humanatlas.io/ref-organ/kidney-female-left/v1.3#primary
+  Metadata / creators / DOI: metadata/kidney-female-left-v1.3.jsonld
+https://purl.humanatlas.io/ref-organ/kidney-male-left/v1.3#primary
+  Metadata / creators / DOI: metadata/kidney-male-left-v1.3.jsonld
+https://purl.humanatlas.io/ref-organ/large-intestine-female/v1.3#primary
+  Metadata / creators / DOI: metadata/large-intestine-female-v1.3.jsonld
+https://purl.humanatlas.io/ref-organ/large-intestine-male/v1.3#primary
+  Metadata / creators / DOI: metadata/large-intestine-male-v1.3.jsonld
+https://purl.humanatlas.io/ref-organ/liver-female/v1.2#primary
+  Metadata / creators / DOI: metadata/liver-female-v1.2.jsonld
+https://purl.humanatlas.io/ref-organ/liver-male/v1.2#primary
+  Metadata / creators / DOI: metadata/liver-male-v1.2.jsonld
+https://purl.humanatlas.io/ref-organ/lung-female/v1.4#primary
+  Metadata / creators / DOI: metadata/lung-female-v1.4.jsonld
+https://purl.humanatlas.io/ref-organ/lung-male/v1.4#primary
+  Metadata / creators / DOI: metadata/lung-male-v1.4.jsonld
+https://purl.humanatlas.io/ref-organ/mammary-gland-female-left/v1.1#primary
+  Metadata / creators / DOI: metadata/mammary-gland-female-left-v1.1.jsonld
+https://purl.humanatlas.io/ref-organ/pancreas-female/v1.3#primary
+  Metadata / creators / DOI: metadata/pancreas-female-v1.3.jsonld
+https://purl.humanatlas.io/ref-organ/pancreas-male/v1.3#primary
+  Metadata / creators / DOI: metadata/pancreas-male-v1.3.jsonld
+https://purl.humanatlas.io/ref-organ/skin-female/v1.5#primary
+  Metadata / creators / DOI: metadata/skin-female-v1.5.jsonld
+https://purl.humanatlas.io/ref-organ/skin-male/v1.4#primary
+  Metadata / creators / DOI: metadata/skin-male-v1.4.jsonld
+https://purl.humanatlas.io/ref-organ/small-intestine-female/v1.2#primary
+  Metadata / creators / DOI: metadata/small-intestine-female-v1.2.jsonld
+https://purl.humanatlas.io/ref-organ/small-intestine-male/v1.2#primary
+  Metadata / creators / DOI: metadata/small-intestine-male-v1.2.jsonld
+https://purl.humanatlas.io/ref-organ/spleen-female/v1.3#primary
+  Metadata / creators / DOI: metadata/spleen-female-v1.3.jsonld
+https://purl.humanatlas.io/ref-organ/spleen-male/v1.3#primary
+  Metadata / creators / DOI: metadata/spleen-male-v1.3.jsonld
+https://purl.humanatlas.io/ref-organ/uterus-female/v1.2#primary
+  Metadata / creators / DOI: metadata/uterus-female-v1.2.jsonld

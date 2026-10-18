@@ -1,0 +1,301 @@
+{
+    "@graph": [
+        {
+            "@id": "https://github.com/hubmapconsortium/hra-do-processor",
+            "dcat:conforms_to": "SoftwareApplication",
+            "schema1:version": "0.10.0",
+            "schema1:targetProduct": {
+                "@id": "_:b0"
+            },
+            "schema1:name": "HRA Digital Object Processor",
+            "rdfs:label": "HRA Digital Object Processor",
+            "@type": "schema1:SoftwareApplication"
+        },
+        {
+            "@id": "_:b0",
+            "rdfs:seeAlso": {
+                "@id": "https://github.com/hubmapconsortium/hra-do-processor/commit/cd8d578a4c9da7c0539008bc2742971b4a545121"
+            },
+            "schema1:codeRepository": {
+                "@id": "https://github.com/hubmapconsortium/hra-do-processor"
+            },
+            "@type": "schema1:SoftwareSourceCode"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#3d-vh-f-skin.glb",
+            "dcat:mediaType": "model/gltf-binary",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/skin-female/v1.5/assets/3d-vh-f-skin.glb",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#3d-vh-f-skin.glb",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Raw data distribution '3d-vh-f-skin.glb' file",
+            "rdfs:label": "Raw data distribution '3d-vh-f-skin.glb' file",
+            "@type": "dcat:Distribution"
+        },
+        {
+            "@id": "https://orcid.org/0000-0002-3321-6137",
+            "dcat:conforms_to": "Person",
+            "schema1:name": "Katy Börner",
+            "schema1:identifier": "0000-0002-3321-6137",
+            "schema1:givenName": "Katy",
+            "schema1:familyName": "Börner",
+            "rdfs:label": "Katy Börner",
+            "@type": "schema1:Person"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#rdfxml",
+            "dcat:mediaType": "application/rdf+xml",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/skin-female/v1.5/graph.xml",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#rdfxml",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Graph data distribution skin-female (v1.5) in RDF/XML format",
+            "rdfs:label": "Graph data distribution skin-female (v1.5) in RDF/XML format",
+            "@type": "dcat:Distribution"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#ntriples",
+            "dcat:mediaType": "application/n-triples",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/skin-female/v1.5/graph.nt",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#ntriples",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Graph data distribution skin-female (v1.5) in N-Triples format",
+            "rdfs:label": "Graph data distribution skin-female (v1.5) in N-Triples format",
+            "@type": "dcat:Distribution"
+        },
+        {
+            "@id": "https://orcid.org/0000-0002-3333-5646",
+            "dcat:conforms_to": "Person",
+            "schema1:name": "Heidi Schlehlein",
+            "schema1:identifier": "0000-0002-3333-5646",
+            "schema1:givenName": "Heidi",
+            "schema1:familyName": "Schlehlein",
+            "rdfs:label": "Heidi Schlehlein",
+            "@type": "schema1:Person"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5",
+            "prov:wasDerivedFrom": {
+                "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#raw-data"
+            },
+            "schema1:additionalType": "ref-organ",
+            "schema1:dateCreated": {
+                "@value": "2026-06-08",
+                "@type": "xsd:date"
+            },
+            "dct:publisher": "HuBMAP",
+            "dct:license": "https://creativecommons.org/licenses/by/4.0/",
+            "rdfs:seeAlso": {
+                "@id": "https://purl.humanatlas.io/ref-organ/skin-female/v1.5"
+            },
+            "dcat:distribution": [
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#nquads"
+                },
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#jsonld"
+                },
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#turtle"
+                },
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#ntriples"
+                },
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#rdfxml"
+                },
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#json"
+                }
+            ],
+            "schema1:version": "v1.5",
+            "dct:creator": {
+                "@id": "https://github.com/hubmapconsortium/hra-do-processor"
+            },
+            "rdfs:comment": "The graph representation of the 3D Reference Organ for Skin, Female dataset.",
+            "@type": "dcat:Dataset",
+            "schema1:name": "skin-female",
+            "rdfs:label": "skin-female (v1.5) graph data",
+            "dct:title": "skin-female (v1.5) graph data"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#raw-data",
+            "schema1:dateCreated": {
+                "@value": "2025-06-15",
+                "@type": "xsd:date"
+            },
+            "dct:creator": [
+                {
+                    "@id": "https://orcid.org/0000-0003-4066-7531"
+                },
+                {
+                    "@id": "https://orcid.org/0000-0002-3333-5646"
+                }
+            ],
+            "@type": "dcat:Dataset",
+            "schema1:citation": "Browne, Kristen, and Heidi Schlehlein. 2024. *3D Reference Organ for Skin, Female v1.5*. https://doi.org/10.48539/HBM453.MVPL.398. Accessed on June 15, 2025.",
+            "dcat:distribution": [
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#crosswalk.csv"
+                },
+                {
+                    "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#3d-vh-f-skin.glb"
+                }
+            ],
+            "dct:references": "https://doi.org/10.1002/(SICI)1097-0185(199804)253:2<49::AID-AR8>3.0.CO;2-9",
+            "dct:title": "3D Reference Organ for Skin, Female",
+            "rdfs:comment": "This reference organ, Skin-female (https://humanatlas.io/3d-reference-library) was created using data from the Visible\nHuman Dataset, provided by the National Library of Medicine (Spitzer and Whitlock 2002). In version v1.3, the torso of\nthe skin model was moved up from previous editions to incorporate the clavicles and other anatomy for the breast. It\nwas also adjusted to add space for the triceps surae and the ankle bones for the eventual addition of the triceps\nsurae muscles and landmark organs. In v2.3, the head was adjusted to be more like the original skin of the Visible\nHuman Female, to make space for the mouth 3D object and landmarks.\n\n**Bibliography:**\n\n* Spitzer, Victor M., and David G. Whitlock. 2002. “The Visible Human Dataset: The Anatomical Platform for Human Simulation.” *The Anatomical Record* 253 (2): 49–57. https://doi.org/10.1002/(SICI)1097-0185(199804)253:2<49::AID-AR8>3.0.CO;2-9.",
+            "ccf:project_lead": {
+                "@id": "https://orcid.org/0000-0002-3321-6137"
+            },
+            "ccf:hubmap_id": "HBM453.MVPL.398",
+            "schema1:funding": [
+                {
+                    "@id": "_:b2"
+                },
+                {
+                    "@id": "_:b1"
+                }
+            ],
+            "ccf:citation_overall": "Browne, Kristen, Heidi Schlehlein, Bruce W. Herr II, Ellen Quardokus, Andreas Bueckle, and Katy Börner. 2024. *HuBMAP CCF 3D Reference Object Library*. https://humanatlas.io/3d-reference-library. Accessed on June 15, 2025.",
+            "schema1:reviewedBy": {
+                "@id": "https://orcid.org/0000-0001-6638-683X"
+            },
+            "rdfs:label": "3D Reference Organ for Skin, Female",
+            "ccf:doi": {
+                "@id": "https://doi.org/10.48539/HBM453.MVPL.398"
+            },
+            "dct:publisher": "HuBMAP",
+            "dct:license": "Creative Commons Attribution 4.0 International ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#nquads",
+            "dcat:mediaType": "application/n-quads",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/skin-female/v1.5/graph.nq",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#nquads",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Graph data distribution skin-female (v1.5) in N-Quads format",
+            "rdfs:label": "Graph data distribution skin-female (v1.5) in N-Quads format",
+            "@type": "dcat:Distribution"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#jsonld",
+            "dcat:mediaType": "application/ld+json",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/skin-female/v1.5/graph.jsonld",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#jsonld",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Graph data distribution skin-female (v1.5) in JSON-LD format",
+            "rdfs:label": "Graph data distribution skin-female (v1.5) in JSON-LD format",
+            "@type": "dcat:Distribution"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#turtle",
+            "dcat:mediaType": "text/turtle",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/skin-female/v1.5/graph.ttl",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#turtle",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Graph data distribution skin-female (v1.5) in Turtle format",
+            "rdfs:label": "Graph data distribution skin-female (v1.5) in Turtle format",
+            "@type": "dcat:Distribution"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#json",
+            "dcat:mediaType": "application/json",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/skin-female/v1.5/graph.json",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#json",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Graph data distribution skin-female (v1.5) in JSON format",
+            "rdfs:label": "Graph data distribution skin-female (v1.5) in JSON format",
+            "@type": "dcat:Distribution"
+        },
+        {
+            "@id": "_:b1",
+            "schema1:funder": "National Institutes of Health",
+            "schema1:award": "OT2OD033756",
+            "@type": "schema1:Grant"
+        },
+        {
+            "@id": "https://orcid.org/0000-0003-4066-7531",
+            "dcat:conforms_to": "Person",
+            "schema1:name": "Kristen Browne",
+            "schema1:identifier": "0000-0003-4066-7531",
+            "schema1:givenName": "Kristen",
+            "schema1:familyName": "Browne",
+            "rdfs:label": "Kristen Browne",
+            "@type": "schema1:Person"
+        },
+        {
+            "@id": "_:b2",
+            "schema1:funder": "National Institutes of Health",
+            "schema1:award": "OT2OD026671",
+            "@type": "schema1:Grant"
+        },
+        {
+            "@id": "https://orcid.org/0000-0001-6638-683X",
+            "dcat:conforms_to": "Person",
+            "schema1:name": "Fiona Ginty",
+            "schema1:identifier": "0000-0001-6638-683X",
+            "schema1:givenName": "Fiona",
+            "schema1:familyName": "Ginty",
+            "rdfs:label": "Fiona Ginty",
+            "@type": "schema1:Person"
+        },
+        {
+            "@id": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#crosswalk.csv",
+            "dcat:mediaType": "text/csv",
+            "dcat:downloadURL": {
+                "@value": "https://cdn.humanatlas.io/digital-objects/ref-organ/skin-female/v1.5/assets/crosswalk.csv",
+                "@type": "xsd:anyURI"
+            },
+            "dcat:accessURL": {
+                "@value": "https://lod.humanatlas.io/ref-organ/skin-female/v1.5#crosswalk.csv",
+                "@type": "xsd:anyURI"
+            },
+            "dct:title": "Raw data distribution 'crosswalk.csv' file",
+            "rdfs:label": "Raw data distribution 'crosswalk.csv' file",
+            "@type": "dcat:Distribution"
+        }
+    ],
+    "@context": {
+        "dct": "http://purl.org/dc/terms/",
+        "schema1": "http://schema.org/",
+        "ccf": "http://purl.org/ccf/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "prov": "http://www.w3.org/ns/prov#"
+    }
+}

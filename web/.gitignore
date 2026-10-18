@@ -1,0 +1,12 @@
+node_modules
+dist
+*.local
+.DS_Store
+.vite
+screenshots
+_*.mjs
+_*.png
+
+# Cytolume spine generated artifacts (regenerable; canonical store + browser-served)
+spine/build/
+public/spine/
