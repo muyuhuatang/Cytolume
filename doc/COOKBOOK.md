@@ -57,18 +57,23 @@ import type {
 
 ### Prerequisites
 
-Node ≥ 18 (developed on Node 24).
+Use **Node 24.19.0** and **Python 3.14.6**, matching the Pages workflow. JavaScript
+dependencies are locked in `web/package-lock.json`; Python dependencies are pinned
+in `web/spine/requirements.txt`. The interactive showcase needs WebGL2.
 
 ### Running it
 
 All commands run from `web/`. The npm scripts (`web/package.json`):
 
 ```bash
-npm install
+npm ci
+python -m pip install -r spine/requirements.txt
+python -m spine.export.build_all  # generate all four demo layouts and run six checks
 npm run dev          # vite dev server — open the printed URL (lands in 3D)
 npm run typecheck    # tsc --noEmit
-npm run build        # tsc --noEmit && vite build → library bundle (dist/cytolume.js)
-npm run build:app    # tsc --noEmit && vite build --config vite.app.config.ts → dist-app/
+npm run build        # typecheck + library bundle + TypeScript declarations → dist/
+npm run test:hra     # offline anatomy routing and model download progress checks
+npm run build:app    # HRA/font verification + typecheck + showcase build → dist-app/
 npm run preview:app  # vite preview for dist-app/ on port 4317
 npm run preview      # vite preview (uses the library config)
 npm run shot         # node scripts/screenshot.mjs (headless screenshots)
@@ -76,12 +81,18 @@ npm run shot         # node scripts/screenshot.mjs (headless screenshots)
 
 `npm run shot` drives headless Edge via `playwright-core` against a running dev server (no browser download). Start `npm run dev` first; override targets with env vars — `URL` (default `http://localhost:5391/`), `OUT` (default `screenshots`), `CHANNEL` (`msedge` | `chrome`), `HEADFUL=1` to watch it run.
 
+For the README's light-theme GIF with visible anatomy, use
+`npm run capture:readme -- --headful`. This opens the published site in Google Chrome
+and needs Python with Pillow 12.3.0. See the
+[capture workflow](GITHUB-PAGES.md#更新-readme-动图) for installation, workspace paths,
+outputs, and review before committing.
+
 ### Two build outputs
 
 There are two distinct Vite configs, producing two different artifacts:
 
-- **Library bundle** — `vite.config.ts` (lib mode). Entry `src/core/index.ts`, ES format only, target `es2022`, lib name `Cytolume`. `npm run build` emits `dist/cytolume.js` (the package `main`/`module`; types resolve from `src/core/index.ts` via the `exports` map). This is the deliverable you consume from other code.
-- **Showcase app** — `vite.app.config.ts`. Builds from `index.html` (which pulls in `main.ts`/`main3d.ts`) and copies everything under `public/`, including the spine tiles and the committed HRA snapshot. `npm run build:app` verifies the snapshot before writing `dist-app/`. The default base is `/`; set `BASE_PATH=/Cytolume/` for a GitHub project site (use the actual repository name). The data loader, body assets, and service-worker scope follow that base. `npm run preview:app` serves the built site on port 4317.
+- **Library bundle** — `vite.config.ts` (lib mode). Entry `src/core/index.ts`, ES format only, target `es2022`, lib name `Cytolume`. `npm run build` emits `dist/cytolume.js` (the package `main`/`module`) and TypeScript declarations; package types resolve to `dist/core/index.d.ts` via the `exports` map. This is the deliverable you consume from other code.
+- **Showcase app** — `vite.app.config.ts`. Builds from `index.html` (which pulls in `main.ts`/`main3d.ts`) and copies everything under `public/`, including the spine tiles, committed HRA snapshot and local Inter font. `npm run build:app` verifies both snapshots before writing `dist-app/`. Generate the cell data first with `python -m spine.export.build_all`; the app build does not generate it. The default base is `/`; set `BASE_PATH=/Cytolume/` for a GitHub project site (use the actual repository name). The data loader, body assets, and service-worker scope follow that base. `npm run preview:app` serves the built site on port 4317.
 
 Both configs share the path aliases `@core`, `@data`, `@biology`, `@ui`.
 
@@ -117,11 +128,11 @@ Example: `?view=3d&layout=pca3d&theme=dark&density=contours`.
 
 ## Using the Showcase App
 
-The showcase is the Vite app under `web/`. Run it locally with:
+The showcase is the Vite app under `web/`. After completing the setup and data
+generation in [Running it](#running-it), start it from the repository root with:
 
 ```bash
 cd web
-npm install
 npm run dev      # vite dev server
 ```
 

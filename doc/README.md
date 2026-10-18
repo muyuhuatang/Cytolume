@@ -15,13 +15,19 @@ Quick start guide, clearer Anatomy / Demo mapping labels, model download progres
 and the bundled Inter font. See the [deployment record](GITHUB-PAGES.md) for evidence
 and the steps for publishing the next update.
 
+The repository README now includes the Cytolume name explanation and an
+[eight-second Chrome capture](../media/01-hero-light-anatomy.gif) in light mode with
+the anatomy panel visible. The [capture metadata](../media/01-hero-light-anatomy.json)
+records the source URL, browser and view settings. See the
+[capture workflow](GITHUB-PAGES.md#更新-readme-动图) to refresh the preview.
+
 ## Start here
 
 - **[COOKBOOK.md](COOKBOOK.md)** — the practical guide: getting started, a tour of the
   showcase app and its controls, the public library API, and copy-pasteable recipes.
 - **[CASE-STUDY.md](CASE-STUDY.md)** — the narrative walkthrough of what was built and why.
 - **[GITHUB-PAGES.md](GITHUB-PAGES.md)** — live release verification, routine Git
-  updates, first-time Pages setup, and local reproduction (Chinese).
+  updates, first-time Pages setup, README capture, and local reproduction (Chinese).
 
 ## Design journal
 
