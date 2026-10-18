@@ -20,6 +20,7 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "shot": "node scripts/screenshot.mjs",
+    "capture:readme": "node scripts/capture-readme.mjs",
     "build:app": "npm run hra:verify && npm run font:verify && tsc --noEmit && vite build --config vite.app.config.ts",
     "font:verify": "node scripts/verify-font.mjs",
     "hra:verify": "node scripts/hra-snapshot.mjs --verify",

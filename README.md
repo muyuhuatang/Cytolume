@@ -9,7 +9,19 @@ view to anatomical context, and export figures with clear legends and data prove
 **[Open the live demo](https://muyuhuatang.github.io/Cytolume/)** ·
 [Deployment and release checks](doc/GITHUB-PAGES.md)
 
-![Cytolume rendering ~453k cells in 3D](media/01-hero-3d-glow.png)
+![Cytolume in light mode with a rotating 3D cell map and HRA lung anatomy](media/01-hero-light-anatomy.gif)
+
+[View the full-size still image](media/01-hero-light-anatomy.png)
+
+## Why Cytolume?
+
+**Cytolume** combines **cyto-** (cell) with **lume**, evoking light and illumination.
+It captures our goal: **to illuminate the cellular landscape**, making patterns in
+large single-cell datasets easier to see and explore.
+
+The name also reflects the visual design: luminous points in dark mode and clear,
+ink-like marks in light mode. Both views support exploration of individual cells
+and cell populations, alongside anatomical context.
 
 ## Reproducible demo data
 

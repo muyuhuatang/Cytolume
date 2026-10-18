@@ -2,6 +2,9 @@
 
 > A GPU-rendered web library that turns millions of single cells into an honest, luminous tissue-map you can fly through.
 
+The name combines **cyto-** (cell) with **lume**, evoking light and illumination:
+**illuminating the cellular landscape**.
+
 Cytolume is the interactive, packaged successor to the static-notebook prototype
 [`cns-iu/hra-cell-embeddings`](https://github.com/cns-iu/hra-cell-embeddings)
 (Katy Börner / CNS-IU, Human Reference Atlas). Where the predecessor shipped

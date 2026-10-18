@@ -1,0 +1,33 @@
+{
+  "capturedAt": "2026-10-18T03:45:40.756Z",
+  "sourceUrl": "https://muyuhuatang.github.io/Cytolume/?view=3d&layout=umap3d&theme=light&motion=off&spin=off&sex=female",
+  "browser": "155.0.8059.40",
+  "viewport": {
+    "width": 1280,
+    "height": 820
+  },
+  "fps": 10,
+  "frameCount": 80,
+  "selectedCell": {
+    "id": 5,
+    "organ": "lung"
+  },
+  "page": {
+    "count": 453251,
+    "theme": "light",
+    "layout": "umap3d",
+    "bodyLabel": "Demo link: Lung",
+    "scripts": [
+      "https://muyuhuatang.github.io/Cytolume/assets/index-CuMLjopZ.js",
+      "https://muyuhuatang.github.io/Cytolume/vendor/hra/wc.js"
+    ]
+  },
+  "encoding": {
+    "frames": 80,
+    "durationMs": 8000,
+    "width": 1120,
+    "height": 718,
+    "bytes": 3822632,
+    "minimumAnatomyPixels": 1570
+  }
+}

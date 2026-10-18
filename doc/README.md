@@ -5,6 +5,9 @@ single-cell embeddings as an honest, luminous tissue-map — plus a thin showcas
 that demonstrates it. The source lives in [`../web`](../web); this folder holds the
 documentation and the design journal.
 
+The name combines **cyto-** (cell) with **lume**, evoking light and illumination:
+**illuminating the cellular landscape**.
+
 The [live showcase](https://muyuhuatang.github.io/Cytolume/) is deployed through
 GitHub Pages. Release `de0642a` passed its production build and deployment, with
 manual browser acceptance confirmed by the project owner. It includes a reopenable
