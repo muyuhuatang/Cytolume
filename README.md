@@ -1,27 +1,27 @@
 # Cytolume
 
-> A GPU-rendered web library that turns millions of single cells into an honest, luminous tissue-map you can fly through.
+> Explore single-cell maps in 2D and 3D, powered by the GPU.
 
-Cytolume renders single-cell embeddings (UMAP / t-SNE / PCA) at 450k–millions of points
-in the browser with WebGL2, and exports them as **publication-grade figures** whose keys
-state exactly what they can and cannot support.
+Cytolume is a WebGL2 visualization library and interactive showcase for large single-cell
+embeddings. Explore UMAP, t-SNE, and PCA layouts, focus on cell populations, connect the
+view to anatomical context, and export figures with clear legends and data provenance.
 
 ![Cytolume rendering ~453k cells in 3D](media/01-hero-3d-glow.png)
 
-> ### ⚠️ The bundled data is synthetic
->
-> This repository ships a **generator**, not a dataset. `spine/export/synth.py` produces
-> 453,251 seeded gaussian points with placeholder cell-type labels
-> (`CL:0000000_type00` … `type47` — fabricated CURIEs that happen to resolve to real Cell
-> Ontology terms).
->
-> Every figure exported from it prints **`SYNTHETIC DATA — not for publication`** on its
-> face, and will keep doing so until a spine manifest positively declares
-> `provenance.synthetic: false`. That is deliberate: nothing about the app can distinguish
-> a real spine from a seeded one by inspection, so the truth has to be *asserted* by
-> whatever builds the tiles, never inferred. See [`doc/data-request.md`](doc/data-request.md).
+## Reproducible demo data
 
----
+The included demo generates **453,251 synthetic cells across 48 example categories**
+from fixed random seeds. It provides a consistent starting point for exploring rendering,
+layout transitions, selection, and figure export. The simulated coordinates, values, and
+annotations make the demo easy to regenerate and use for development and testing.
+
+The anatomy panel uses versioned **Human Reference Atlas models**, bundled locally for
+reproducibility. The demo's cell-to-organ associations illustrate how anatomical context
+can complement an embedding view.
+
+Research datasets can be integrated through the Python data pipeline; see the
+[data integration guide](doc/data-request.md) for input fields and provenance metadata.
+Demo exports include a synthetic-data label to keep their origin clear when shared.
 
 ## Quick start
 
@@ -32,14 +32,15 @@ cd web
 npm ci
 python -m pip install -r spine/requirements.txt
 
-# Generate the data spine (~42 MB, git-ignored, regenerable — not shipped in the repo)
+# Generate the reproducible demo data (~42 MB)
 python -m spine.export.build_all             # all four layouts + six validation checks
 
 npm run dev                                   # http://localhost:5173
 ```
 
-Swapping `spine/export/synth.py` for a real `.h5ad` loader is the only change needed to
-render real cells — no other code touches the data.
+The rendering layer consumes a shared data format. To explore a research dataset,
+adapt the Python input pipeline to read your `.h5ad` source and generate the same
+layout, metadata, and tile files.
 
 ## GitHub Pages
 
@@ -50,30 +51,25 @@ For an existing repository, start from a clone to preserve its commit history.
 
 The workflow installs locked dependencies, generates and verifies all four cell
 layouts, verifies the frozen HRA snapshot, builds `web/dist-app/`, and deploys it.
-The repository URL determines the asset base path automatically. It never runs
-`hra:refresh`; anatomy models and API responses come from the files in this repo.
+The repository URL determines the asset base path automatically. Each build packages
+the versioned anatomy models and scene data stored in this repository.
 
 For Git upload instructions and first-deployment checks, see
 [doc/GITHUB-PAGES.md](doc/GITHUB-PAGES.md).
 
 ## What it does
 
-- **Two encodings.** *Categorical* draws opaque, depth-sorted sphere impostors, one hue per
-  cell type. *Continuous* accumulates an optical-depth integral and resolves it so
-  **lightness carries density and hue carries cell value**, each with its own 1-D key.
-- **Honest density.** Point-spread normalisation makes every cell deposit the same total
-  ink regardless of depth, so `∫τ` over any image region is exactly proportional to the
-  number of cells in it. The density key is ticked in **cells along the ray** — a real
-  unit, not an arbitrary ramp.
-- **Keys that disclose.** Ticks in data units, a distribution strip, the colormap named
-  with a *measured* character (`ordered lightness`, not "perceptually uniform" unless it
-  is), plus what the producer did **not** declare.
-- **Deterministic export.** Two exports of identical data agree byte for byte: no
-  wall-clock input, no GPU readback on the plate path, and an in-flight layout morph is
-  committed or the export is refused.
-- **Interaction.** Orbit, lasso selection, hover pick, focus+context, layout morphing,
-  cluster labels with collision declutter, a screen-space GPU-KDE density underlay, and an
-  HRA human-body panel that locates a clicked cell type.
+- **Explore in 2D and 3D.** Switch between embedding layouts, orbit the 3D view, and
+  follow the same cells through animated layout transitions.
+- **Focus on populations.** Inspect individual cells, select groups with a lasso, and
+  highlight categories through the legend while keeping the surrounding map in view.
+- **Read values and density.** Dedicated categorical and continuous encodings pair with
+  separate value and density keys, distribution strips, and labeled scales.
+- **Add anatomical context.** Explore HRA reference anatomy alongside the cell map,
+  with organ highlighting and female/male reference models.
+- **Export consistent figures.** Capture annotated figures with legends, declared units,
+  and data provenance. Deterministic figure composition supports repeatable exports
+  from the same data and view settings.
 
 | | |
 |---|---|
@@ -88,9 +84,9 @@ For Git upload instructions and first-deployment checks, see
 - **[doc/README.md](doc/README.md)** — the design journal index. The `reflection-*` files
   are the as-built record, one per track of work.
 
-If you read one, read [`reflection-9`](doc/reflection-9-honest-encoding.md): it covers the
-resolve that makes density and value independently readable, and — more usefully — records
-the approaches that were **measured and rejected**, with the numbers.
+For the rendering design and validation results, start with
+[`reflection-9`](doc/reflection-9-honest-encoding.md), which explains how density and
+continuous values remain independently readable.
 
 ## Layout
 
