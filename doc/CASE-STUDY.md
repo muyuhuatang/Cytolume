@@ -187,16 +187,29 @@ and embedding-switch are all GPU operations — no geometry rebuilds.
 
 ---
 
-## Honest status
+## Published demo and next steps
 
-Everything above runs today against a **synthetic 453k stand-in** built to the exact data
-contract of the real cells — so dropping in the real Human Reference Atlas data is a
-one-file change in the export pipeline (the request for the source `.h5ad` is already
-drafted). Deferred by design: a WebGPU path, full multi-pass order-independent
-transparency, SSAO, biological "lenses," and the real-data swap.
+The [live showcase](https://muyuhuatang.github.io/Cytolume/) runs a reproducible demo
+of **453,251 synthetic cells across 48 example categories**, generated from fixed
+random seeds. This provides a repeatable dataset for exploring layouts, selection,
+encoding, and figure export. Research datasets can use the same tile contract through
+the Python export pipeline; the [integration guide](data-request.md) records the input
+fields and provenance needed.
 
-Measured on an RTX 4060 (ANGLE/D3D11): **453,251 cells, ~60 fps** orbiting in 3D, with the
-density field live; ~286 kB gzipped library bundle.
+Release `de0642a` completed its GitHub Pages build and deployment on 2026-10-18 (UTC),
+and the project owner confirmed the browser check passed. A short Quick start guide
+introduces the controls, while the Anatomy panel identifies cell-to-organ links as
+**Demo mapping** and shows model download progress. The 22 HRA reference models,
+component, scene data, and Inter font are bundled with version and integrity records
+and served by the same site. See the [deployment record](GITHUB-PAGES.md) for the
+completed checks and publishing workflow.
+
+Further work includes research-data integration, a WebGPU path, full multi-pass
+order-independent transparency, SSAO, and biological "lenses."
+
+Earlier development measurements on an RTX 4060 (ANGLE/D3D11) recorded **453,251 cells
+at ~60 fps** orbiting in 3D with the density field live, and a ~286 kB gzipped library
+bundle. These measurements describe that development setup.
 
 ---
 

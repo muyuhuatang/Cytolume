@@ -6,6 +6,9 @@ Cytolume is a WebGL2 visualization library and interactive showcase for large si
 embeddings. Explore UMAP, t-SNE, and PCA layouts, focus on cell populations, connect the
 view to anatomical context, and export figures with clear legends and data provenance.
 
+**[Open the live demo](https://muyuhuatang.github.io/Cytolume/)** ·
+[Deployment and release checks](doc/GITHUB-PAGES.md)
+
 ![Cytolume rendering ~453k cells in 3D](media/01-hero-3d-glow.png)
 
 ## Reproducible demo data
@@ -44,18 +47,20 @@ layout, metadata, and tile files.
 
 ## GitHub Pages
 
-Commit this release directory's **contents** at the repository root, so that
-`web/`, `doc/`, and `.github/` are directly inside the repository. Select
-**Settings → Pages → Source → GitHub Actions**, then push to `main` using Git.
-For an existing repository, start from a clone to preserve its commit history.
+The showcase is published at **https://muyuhuatang.github.io/Cytolume/** from
+[`muyuhuatang/Cytolume`](https://github.com/muyuhuatang/Cytolume). Each push to `main`
+triggers the repository's GitHub Actions deployment workflow.
 
 The workflow installs locked dependencies, generates and verifies all four cell
-layouts, verifies the frozen HRA snapshot, builds `web/dist-app/`, and deploys it.
-The repository URL determines the asset base path automatically. Each build packages
-the versioned anatomy models and scene data stored in this repository.
+layouts, tests the local anatomy routing and download progress, verifies the HRA
+and Inter snapshots, builds `web/dist-app/`, and deploys it. The Pages configuration
+determines the asset base path automatically. Anatomy models, scene data, component
+code, and the font are packaged from the repository and served by the same site.
 
-For Git upload instructions and first-deployment checks, see
-[doc/GITHUB-PAGES.md](doc/GITHUB-PAGES.md).
+Release **`de0642a`** completed its production build and deployment on **2026-10-18
+(UTC)**, followed by a successful manual browser check reported by the project owner.
+See [doc/GITHUB-PAGES.md](doc/GITHUB-PAGES.md) for the verification record, routine
+updates, local reproduction, and first-time setup.
 
 ## What it does
 

@@ -5,17 +5,28 @@ single-cell embeddings as an honest, luminous tissue-map — plus a thin showcas
 that demonstrates it. The source lives in [`../web`](../web); this folder holds the
 documentation and the design journal.
 
+The [live showcase](https://muyuhuatang.github.io/Cytolume/) is deployed through
+GitHub Pages. Release `de0642a` passed its production build and deployment, with
+manual browser acceptance confirmed by the project owner. It includes a reopenable
+Quick start guide, clearer Anatomy / Demo mapping labels, model download progress,
+and the bundled Inter font. See the [deployment record](GITHUB-PAGES.md) for evidence
+and the steps for publishing the next update.
+
 ## Start here
 
 - **[COOKBOOK.md](COOKBOOK.md)** — the practical guide: getting started, a tour of the
   showcase app and its controls, the public library API, and copy-pasteable recipes.
 - **[CASE-STUDY.md](CASE-STUDY.md)** — the narrative walkthrough of what was built and why.
+- **[GITHUB-PAGES.md](GITHUB-PAGES.md)** — live release verification, routine Git
+  updates, first-time Pages setup, and local reproduction (Chinese).
 
 ## Design journal
 
 The `reflection-*` files are the as-built development record — one per track of work,
 each building on the last. They capture the rationale, trade-offs, and verification
 behind the code (referenced from code comments as `(reflection-N)`).
+These entries preserve the implementation at each stage; use the cookbook for
+current UI behavior and the deployment guide for the published release.
 
 | Doc | Track |
 | --- | --- |
@@ -32,6 +43,6 @@ behind the code (referenced from code comments as `(reflection-N)`).
 
 ## Reference & planning
 
-- **[data-request.md](data-request.md)** — the real-data request log (what's needed to
-  replace the synthetic stand-ins; referenced from `web/src/body/body-map.ts`).
+- **[data-request.md](data-request.md)** — research-data integration requirements,
+  input fields, and provenance (referenced from `web/src/body/body-map.ts`).
 - **[initial-idea.md](initial-idea.md)** — the original concept note.

@@ -135,9 +135,11 @@ Controls are `id`'d `<select>`s and `<input type=range>`s in `index.html`, wired
 `web/src/main.ts` (top-level + 2D path) and `web/src/main3d.ts` (3D path). Rows that are
 3D-only start hidden (`display:none`) and are revealed once the 3D boot finishes.
 
-Since **reflection-9** they are grouped into four collapsible `<details>` sections —
-**Data**, **Marks**, **Context**, **View** — rather than one flat list. Group membership
-is presentational; every `id` is unchanged, so `getElementById` wiring is unaffected.
+The controls are grouped into four collapsible `<details>` sections — **Data**,
+**Marks**, **Context**, **View** — with a separate **Quick start** disclosure above
+them. The guide adapts to the active view, remembers dismissal when local storage
+is available, and can be reopened from its heading. Group membership is
+presentational; every control `id` is unchanged.
 
 A control the *current render path cannot act on* is rendered **inert** (dimmed +
 `disabled`) with a written reason rather than silently doing nothing — see
@@ -146,10 +148,10 @@ A control the *current render path cannot act on* is rendered **inert** (dimmed 
 | Row | id | Group | Options (value → label) | Shown in |
 |-----|----|----|----|----|
 | Theme | `theme` | Context | `dark` → Dark · `light` → Light | 2D + 3D |
-| View | `view` | View | `2d` → 2D · regl point cloud · `3d` → 3D · sphere impostors | 2D + 3D |
+| View | `view` | View | `2d` → 2D · `3d` → 3D | 2D + 3D |
 | Layout | `layout` | Data | populated from the data manifest (`<key> · <dims>D`) | 2D + 3D (after load) |
 | Tool | `tool` | View | `orbit` → Orbit · drag to rotate · `lasso` → Lasso · drag to select | 3D only |
-| Encoding | `mode` | Data | `continuous` → Continuous · density glow · `categorical` → Categorical · cell type | 2D + 3D |
+| Encoding | `mode` | Data | `continuous` → Continuous · density glow · `categorical` → Cell type | 2D + 3D |
 | Colormap | `cmap` | Data | see list below | 2D + 3D (continuous only) |
 | Density | `density` | Context | `off` → Off · `underlay` → Underlay · `contours` → Underlay + contours | 3D only |
 | Motion | `motion` | View | `always` → Always · `idle` → When idle · `off` → Off | 3D only |
