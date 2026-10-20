@@ -6,7 +6,8 @@ Cytolume is a WebGL2 visualization library and interactive showcase for large si
 embeddings. Explore UMAP, t-SNE, and PCA layouts, focus on cell populations, connect the
 view to anatomical context, and export figures with clear legends and data provenance.
 
-**[Open the live demo](https://muyuhuatang.github.io/Cytolume/)**
+**[Open the live demo](https://muyuhuatang.github.io/Cytolume/)** ·
+[Deployment and release checks](doc/GITHUB-PAGES.md)
 
 ![Cytolume in light mode with a rotating 3D cell map and HRA lung anatomy](media/01-hero-light-anatomy.gif)
 
@@ -70,7 +71,8 @@ code, and the font are packaged from the repository and served by the same site.
 
 Release **`de0642a`** completed its production build and deployment on **2026-10-18
 (UTC)**, followed by a successful manual browser check reported by the project owner.
-The [deployment workflow](.github/workflows/deploy-pages.yml) lists every build and verification step.
+See [doc/GITHUB-PAGES.md](doc/GITHUB-PAGES.md) for the verification record, routine
+updates, local reproduction, and first-time setup.
 
 ## What it does
 

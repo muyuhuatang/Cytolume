@@ -83,9 +83,9 @@ npm run shot         # node scripts/screenshot.mjs (headless screenshots)
 
 For the README's light-theme GIF with visible anatomy, use
 `npm run capture:readme -- --headful`. This opens the published site in Google Chrome
-and needs Python with Pillow 12.3.0. Install the encoder
-with `python -m pip install Pillow==12.3.0`. The script writes the GIF, a PNG still and
-JSON capture metadata under `media/`; review them before committing.
+and needs Python with Pillow 12.3.0. See the
+[capture steps](GITHUB-PAGES.md#updating-the-readme-preview) for installation, outputs,
+and review before committing.
 
 ### Two build outputs
 

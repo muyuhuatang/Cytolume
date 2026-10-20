@@ -9,7 +9,8 @@ This folder contains the TypeScript rendering library, interactive showcase,
 Python data exporter, and bundled anatomy and font assets.
 
 [Live demo](https://muyuhuatang.github.io/Cytolume/) ·
-[Cookbook and API](../doc/COOKBOOK.md)
+[Cookbook and API](../doc/COOKBOOK.md) ·
+[Deployment guide](../doc/GITHUB-PAGES.md)
 
 ## Current showcase
 
@@ -72,8 +73,8 @@ workflow runs the offline checks and production build; browser checks are local.
 The repository's `.github/workflows/deploy-pages.yml` deploys GitHub Pages on each
 push to `main`. It installs locked dependencies, generates and checks all layouts,
 runs offline anatomy checks, verifies the HRA and Inter snapshots, and builds the
-site with the Pages base path. See [`deploy-pages.yml`](../.github/workflows/deploy-pages.yml)
-for the exact steps.
+site with the Pages base path. See the [deployment guide](../doc/GITHUB-PAGES.md)
+for routine updates and first-time setup.
 
 For a manual project-site build in PowerShell:
 

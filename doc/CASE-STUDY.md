@@ -201,8 +201,8 @@ and the project owner confirmed the browser check passed. A short Quick start gu
 introduces the controls, while the Anatomy panel identifies cell-to-organ links as
 **Demo mapping** and shows model download progress. The 22 HRA reference models,
 component, scene data, and Inter font are bundled with version and integrity records
-and served by the same site. The [deployment workflow](../.github/workflows/deploy-pages.yml) records
-the checks every release runs.
+and served by the same site. See the [deployment guide](GITHUB-PAGES.md) for the
+completed checks and publishing workflow.
 
 Further work includes research-data integration, a WebGPU path, full multi-pass
 order-independent transparency, SSAO, and biological "lenses."
