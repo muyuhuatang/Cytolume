@@ -28,7 +28,7 @@ and cell populations, alongside anatomical context.
 
 Cytolume was motivated by
 **[cns-iu/hra-cell-embeddings](https://github.com/cns-iu/hra-cell-embeddings)**, a Human
-Reference Atlas project from CNS-IU (Katy Börner) on visualizing large cell embeddings.
+Reference Atlas project from CNS-IU (Prof. Katy Börner) on visualizing large cell embeddings.
 That work studied about 453k cells from ten concatenated HuBMAP lung datasets in Jupyter
 notebooks: normalization strategies, UMAP and t-SNE layouts (including PCA with 200 and
 1,000 components followed by t-SNE), and a focused view of the top 24 cell types, with
@@ -157,7 +157,7 @@ media/        figures used in the docs
   point-cloud embeddings.
 - Motivated by the notebook project
   **[cns-iu/hra-cell-embeddings](https://github.com/cns-iu/hra-cell-embeddings)**
-  (Katy Börner / CNS-IU, Human Reference Atlas); see [Motivation](#motivation).
+  (Prof. Katy Börner / CNS-IU, Human Reference Atlas); see [Motivation](#motivation).
 - The body panel includes a pinned **HuBMAP HRA CCF Body UI** component, scene data,
   metadata, and 22 anatomical models in `web/public/vendor/hra/`. They are served
   locally with no runtime HRA API/CDN dependency. `snapshot.json` records versions,

@@ -23,7 +23,7 @@ It is the interactive, packaged successor to the static-notebook prototype that 
 
 ## 2. Where we start from — and the gap
 
-The predecessor, `cns-iu/hra-cell-embeddings` (Katy Börner / CNS-IU, Human Reference Atlas):
+The predecessor, `cns-iu/hra-cell-embeddings` (Prof. Katy Börner / CNS-IU, Human Reference Atlas):
 
 - **Is** a Jupyter-only research repo (~453k cells; PCA/t-SNE/UMAP + scVI/UCE embeddings) producing **static matplotlib/scanpy PNGs**.
 - **Lacks** interactivity, GPU rendering, density handling, and any level-of-detail. Its own "troubleshooting" notebooks fought overplotting — the blob problem — by hand.
