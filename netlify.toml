@@ -1,14 +1,24 @@
 # Netlify config for the Cytolume showcase.
-# Used for git-connected continuous deploys (Netlify builds from the repo). For a
-# one-off CLI deploy you instead build locally and push the folder:
-#   cd web && npm run build:app && netlify deploy --prod --dir=dist-app
+# Used for git-connected continuous deploys (Netlify builds from the repo). The
+# build mirrors .github/workflows/deploy-pages.yml: the ~42 MB cell data under
+# public/spine/ is gitignored, so it is regenerated from fixed seeds before Vite
+# copies public/ into dist-app/. For a one-off CLI deploy, run the same command
+# locally and push the folder:
+#   cd web && netlify deploy --prod --dir=dist-app
 [build]
   base = "web"
-  command = "npm install && npm run build:app"
+  command = """
+    npm ci && \
+    python -m pip install -r spine/requirements.txt && \
+    python -m spine.export.build_all && \
+    npm run test:hra && \
+    npm run build:app
+  """
   publish = "dist-app"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "24.19.0"
+  PYTHON_VERSION = "3.14.6"
 
 # The spine tiles are immutable, content-addressed-ish binaries — cache hard.
 [[headers]]
