@@ -7,6 +7,7 @@ embeddings. Explore UMAP, t-SNE, and PCA layouts, focus on cell populations, con
 view to anatomical context, and export figures with clear legends and data provenance.
 
 **[Open the live demo](https://muyuhuatang.github.io/Cytolume/)** ·
+[Python package](https://github.com/muyuhuatang/cytolume-py) ·
 [Deployment and release checks](doc/GITHUB-PAGES.md)
 
 ![Cytolume in light mode with a rotating 3D cell map and HRA lung anatomy](media/01-hero-light-anatomy.gif)
@@ -23,6 +24,33 @@ The name also reflects the visual design: luminous points in dark mode and clear
 ink-like marks in light mode. Both views support exploration of individual cells
 and cell populations, alongside anatomical context.
 
+## Motivation
+
+Cytolume was motivated by
+**[cns-iu/hra-cell-embeddings](https://github.com/cns-iu/hra-cell-embeddings)**, a Human
+Reference Atlas project from CNS-IU (Katy Börner) on visualizing large cell embeddings.
+That work studied about 453k cells from ten concatenated HuBMAP lung datasets in Jupyter
+notebooks: normalization strategies, UMAP and t-SNE layouts (including PCA with 200 and
+1,000 components followed by t-SNE), and a focused view of the top 24 cell types, with
+the design choices recorded in a Visualization Handbook (PDF).
+
+Those results were static images. Cytolume sets out to make the same kind of data, cell
+embeddings labelled by `CL_label` cell type, interactive in the browser at that scale and
+beyond. Its synthetic demo keeps the original dataset's size of about 453k cells.
+
+## Python package
+
+**[cytolume-py](https://github.com/muyuhuatang/cytolume-py)** packages Cytolume's data
+pipeline and viewer for Python. It builds the tiled data spine from an AnnData `.h5ad`
+file or NumPy arrays and serves the viewer locally or inline in Jupyter. It needs only
+NumPy, plus `anndata` for `.h5ad` files; no Node.js build is required.
+
+```bash
+pip install "cytolume[anndata] @ git+https://github.com/muyuhuatang/cytolume-py"
+cytolume build lung.h5ad -o lung_spine --label CL_label   # each .obsm embedding becomes a layout
+cytolume serve lung_spine                                  # opens http://localhost:8765/
+```
+
 ## Reproducible demo data
 
 The included demo generates **453,251 synthetic cells across 48 example categories**
@@ -34,7 +62,8 @@ The anatomy panel uses versioned **Human Reference Atlas models**, bundled local
 reproducibility. The demo's cell-to-organ associations illustrate how anatomical context
 can complement an embedding view.
 
-Research datasets can be integrated through the Python data pipeline; see the
+Research datasets can be loaded with the [Python package](#python-package), or integrated
+through this repository's Python data pipeline; see the
 [data integration guide](doc/data-request.md) for input fields and provenance metadata.
 Demo exports include a synthetic-data label to keep their origin clear when shared.
 
@@ -53,9 +82,10 @@ python -m spine.export.build_all             # all four layouts + six validation
 npm run dev                                   # http://localhost:5173
 ```
 
-The rendering layer consumes a shared data format. To explore a research dataset,
-adapt the Python input pipeline to read your `.h5ad` source and generate the same
-layout, metadata, and tile files.
+The rendering layer consumes a shared data format. To explore a research dataset, the
+[Python package](#python-package) is the quickest route. Alternatively, adapt the Python
+input pipeline to read your `.h5ad` source and generate the same layout, metadata, and
+tile files.
 
 ## GitHub Pages
 
@@ -125,9 +155,9 @@ media/        figures used in the docs
 - Rendering approach inspired by **[Helios-web](https://github.com/filipinascimento/helios-web)**
   (Filipi Nascimento) — a *stack* of GPU choices transplanted from network layouts onto
   point-cloud embeddings.
-- Successor to the static-notebook prototype
+- Motivated by the notebook project
   **[cns-iu/hra-cell-embeddings](https://github.com/cns-iu/hra-cell-embeddings)**
-  (Katy Börner / CNS-IU, Human Reference Atlas).
+  (Katy Börner / CNS-IU, Human Reference Atlas); see [Motivation](#motivation).
 - The body panel includes a pinned **HuBMAP HRA CCF Body UI** component, scene data,
   metadata, and 22 anatomical models in `web/public/vendor/hra/`. They are served
   locally with no runtime HRA API/CDN dependency. `snapshot.json` records versions,
