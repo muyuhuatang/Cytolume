@@ -1,12 +1,12 @@
 /** Capture the live showcase in Chrome, then publish an authentic README GIF + PNG.
  * Run from web/: node scripts/capture-readme.mjs --headful
  * Requires installed playwright-core, Google Chrome, Python and Pillow.
- * --repo chooses the repository receiving the assets (useful in the local multi-copy workspace).
+ * --repo chooses the repository receiving the assets (default: this checkout).
  */
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { access, copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
-import { basename, dirname, resolve } from 'node:path';
+import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { chromium } from 'playwright-core';
@@ -132,12 +132,6 @@ const stillLink = `[View the full-size still image](media/${assetName}.png)`;
 if (!nextReadme.includes(stillLink)) nextReadme = nextReadme.replace(replacement, `${replacement}\n\n${stillLink}`);
 
 const destinations = [repo];
-// The existing multi-copy development workspace keeps release media in sync.
-if (basename(repo) === '2.github-push') {
-  const workspace = dirname(repo);
-  try { await access(resolve(workspace, '0.release/README.md')); destinations.push(resolve(workspace, '0.release')); } catch { /* Standalone clone. */ }
-  try { await access(resolve(workspace, 'web/package.json')); destinations.push(workspace); } catch { /* Standalone clone. */ }
-}
 const { files, bodyBox, ...publicRecord } = recording;
 void files; void bodyBox;
 for (const destination of destinations) {

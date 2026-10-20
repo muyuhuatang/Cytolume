@@ -83,9 +83,9 @@ npm run shot         # node scripts/screenshot.mjs (headless screenshots)
 
 For the README's light-theme GIF with visible anatomy, use
 `npm run capture:readme -- --headful`. This opens the published site in Google Chrome
-and needs Python with Pillow 12.3.0. See the
-[capture workflow](GITHUB-PAGES.md#更新-readme-动图) for installation, workspace paths,
-outputs, and review before committing.
+and needs Python with Pillow 12.3.0. Install the encoder
+with `python -m pip install Pillow==12.3.0`. The script writes the GIF, a PNG still and
+JSON capture metadata under `media/`; review them before committing.
 
 ### Two build outputs
 
@@ -335,8 +335,7 @@ Normal builds only verify the committed snapshot. To deliberately update it, run
 `npm run hra:refresh`, inspect the new manifest and resources, run both checks above,
 and commit the snapshot with the application. Do not put refresh in CI or an install
 hook. Keep `.gitattributes`' `-text` rule for snapshot files so a Windows checkout does
-not change the bytes covered by their hashes. When maintaining `0.release/`, copy the
-same snapshot and adapter changes there as part of the release.
+not change the bytes covered by their hashes.
 
 Inter 4.1 is committed under `public/vendor/inter/`, including its license and
 `snapshot.json` with exact source URLs and hashes. Its stylesheet uses a relative
